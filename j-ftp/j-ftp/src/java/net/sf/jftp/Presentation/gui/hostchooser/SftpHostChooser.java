@@ -13,7 +13,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package net.sf.jftp.gui.hostchooser;
+package net.sf.jftp.Presentation.gui.hostchooser;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -37,21 +37,21 @@ import javax.swing.event.ChangeListener;
 
 import net.miginfocom.swing.MigLayout;
 import net.sf.jftp.JFtp;
-import net.sf.jftp.config.LoadSet;
-import net.sf.jftp.config.SaveSet;
-import net.sf.jftp.config.Settings;
-import net.sf.jftp.gui.framework.HButton;
-import net.sf.jftp.gui.framework.HFrame;
-import net.sf.jftp.gui.framework.HInsetPanel;
-import net.sf.jftp.gui.framework.HPanel;
-import net.sf.jftp.gui.framework.HPasswordField;
-import net.sf.jftp.gui.framework.HTextField;
-import net.sf.jftp.net.FtpConnection;
-import net.sf.jftp.net.FtpURLConnection;
-import net.sf.jftp.net.wrappers.Sftp2Connection;
-import net.sf.jftp.net.wrappers.Sftp2URLConnection;
-import net.sf.jftp.net.wrappers.StartConnection;
-import net.sf.jftp.system.logging.Log;
+import net.sf.jftp.Domain.config.LoadSet;
+import net.sf.jftp.Domain.config.SaveSet;
+import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.Presentation.gui.framework.HButton;
+import net.sf.jftp.Presentation.gui.framework.HFrame;
+import net.sf.jftp.Presentation.gui.framework.HInsetPanel;
+import net.sf.jftp.Presentation.gui.framework.HPanel;
+import net.sf.jftp.Presentation.gui.framework.HPasswordField;
+import net.sf.jftp.Presentation.gui.framework.HTextField;
+import net.sf.jftp.DataSource.net.FtpConnection;
+import net.sf.jftp.DataSource.net.FtpURLConnection;
+import net.sf.jftp.DataSource.net.wrappers.Sftp2Connection;
+import net.sf.jftp.DataSource.net.wrappers.Sftp2URLConnection;
+import net.sf.jftp.DataSource.net.wrappers.StartConnection;
+import net.sf.jftp.Domain.system.logging.Log;
 
 public class SftpHostChooser extends HFrame implements ActionListener,
                                                        WindowListener, ChangeListener

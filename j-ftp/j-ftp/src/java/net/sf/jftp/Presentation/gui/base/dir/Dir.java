@@ -13,10 +13,10 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package net.sf.jftp.gui.base.dir;
+package net.sf.jftp.Presentation.gui.base.dir;
 
-import net.sf.jftp.gui.base.DownloadList;
-import net.sf.jftp.net.*;
+import net.sf.jftp.Presentation.gui.base.DownloadList;
+import net.sf.jftp.DataSource.net.*;
 
 
 public interface Dir

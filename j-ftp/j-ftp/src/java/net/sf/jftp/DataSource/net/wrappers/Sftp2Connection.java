@@ -13,7 +13,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package net.sf.jftp.net.wrappers;
+package net.sf.jftp.DataSource.net.wrappers;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -29,14 +29,14 @@ import java.util.Vector;
 
 import javax.swing.JOptionPane;
 
-import net.sf.jftp.config.Settings;
-import net.sf.jftp.net.BasicConnection;
-import net.sf.jftp.net.ConnectionListener;
-import net.sf.jftp.net.DataConnection;
-import net.sf.jftp.net.FtpConnection;
-import net.sf.jftp.net.Transfer;
-import net.sf.jftp.system.StringUtils;
-import net.sf.jftp.system.logging.Log;
+import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.DataSource.net.BasicConnection;
+import net.sf.jftp.DataSource.net.ConnectionListener;
+import net.sf.jftp.DataSource.net.DataConnection;
+import net.sf.jftp.DataSource.net.FtpConnection;
+import net.sf.jftp.DataSource.net.Transfer;
+import net.sf.jftp.Domain.system.StringUtils;
+import net.sf.jftp.Domain.system.logging.Log;
 
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelSftp;

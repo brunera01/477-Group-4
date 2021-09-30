@@ -1,4 +1,4 @@
-package net.sf.jftp.gui.base.dir;
+package net.sf.jftp.Presentation.gui.base.dir;
 
 import java.util.Vector;
 
@@ -7,7 +7,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import net.sf.jftp.JFtp;
-import net.sf.jftp.config.Settings;
+import net.sf.jftp.Domain.config.Settings;
 
 
 public class DirComponent extends DirPanel implements ListSelectionListener {

@@ -1,6 +1,6 @@
-package net.sf.jftp.net;
+package net.sf.jftp.DataSource.net;
 
-import net.sf.jftp.config.Settings;
+import net.sf.jftp.Domain.config.Settings;
 
 public class FtpKeepAliveThread implements Runnable {
 

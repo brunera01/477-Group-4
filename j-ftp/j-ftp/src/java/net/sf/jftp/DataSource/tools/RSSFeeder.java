@@ -13,16 +13,16 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package net.sf.jftp.tools;
+package net.sf.jftp.DataSource.tools;
 
 import net.sf.jftp.JFtp;
-import net.sf.jftp.config.Settings;
-import net.sf.jftp.gui.*;
-import net.sf.jftp.gui.base.StatusCanvas;
-import net.sf.jftp.gui.framework.*;
-import net.sf.jftp.system.LocalIO;
-import net.sf.jftp.system.logging.Log;
-import net.sf.jftp.util.*;
+import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.Presentation.gui.*;
+import net.sf.jftp.Presentation.gui.base.StatusCanvas;
+import net.sf.jftp.Presentation.gui.framework.*;
+import net.sf.jftp.Domain.system.LocalIO;
+import net.sf.jftp.Domain.system.logging.Log;
+import net.sf.jftp.Domain.util.*;
 
 import java.awt.*;
 import java.awt.event.*;

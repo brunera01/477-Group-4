@@ -13,11 +13,11 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package net.sf.jftp.gui.base;
+package net.sf.jftp.Presentation.gui.base;
 
 import net.sf.jftp.*;
-import net.sf.jftp.config.Settings;
-import net.sf.jftp.gui.framework.*;
+import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.Presentation.gui.framework.*;
 
 import java.awt.*;
 
@@ -79,7 +79,7 @@ public class StatusCanvas extends JPanel
                         for(pos = 30; pos > 0; pos -= 1)
                         {
                             paintImmediately(0, 0, getSize().width, getSize().height);
-                            net.sf.jftp.system.LocalIO.pause(interval);
+                            net.sf.jftp.Domain.system.LocalIO.pause(interval);
                         }
             		}
             	});
@@ -116,7 +116,7 @@ public class StatusCanvas extends JPanel
 
                     //paintImmediately(0, 0, getSize().width, getSize().height);
                     repaint();
-                    net.sf.jftp.system.LocalIO.pause(interval);
+                    net.sf.jftp.Domain.system.LocalIO.pause(interval);
 
                     //JFtp.statusP.jftp.validate();
                 }

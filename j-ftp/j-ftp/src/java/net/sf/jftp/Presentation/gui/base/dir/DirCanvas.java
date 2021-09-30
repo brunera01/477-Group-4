@@ -13,13 +13,13 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package net.sf.jftp.gui.base.dir;
+package net.sf.jftp.Presentation.gui.base.dir;
 
-import net.sf.jftp.config.Settings;
-import net.sf.jftp.gui.base.UITool;
-import net.sf.jftp.gui.framework.*;
-import net.sf.jftp.gui.tasks.PathChanger;
-import net.sf.jftp.net.FilesystemConnection;
+import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.Presentation.gui.base.UITool;
+import net.sf.jftp.Presentation.gui.framework.*;
+import net.sf.jftp.Presentation.gui.tasks.PathChanger;
+import net.sf.jftp.DataSource.net.FilesystemConnection;
 
 import java.awt.*;
 import java.awt.event.*;

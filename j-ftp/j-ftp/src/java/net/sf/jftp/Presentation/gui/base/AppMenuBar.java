@@ -13,31 +13,31 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package net.sf.jftp.gui.base;
+package net.sf.jftp.Presentation.gui.base;
 
 import net.sf.jftp.JFtp;
-import net.sf.jftp.config.Settings;
-import net.sf.jftp.gui.framework.*;
-import net.sf.jftp.gui.hostchooser.HostChooser;
-import net.sf.jftp.gui.hostchooser.NfsHostChooser;
-import net.sf.jftp.gui.hostchooser.SftpHostChooser;
-import net.sf.jftp.gui.hostchooser.SmbHostChooser;
-import net.sf.jftp.gui.hostchooser.WebdavHostChooser;
-import net.sf.jftp.gui.tasks.AddBookmarks;
-import net.sf.jftp.gui.tasks.AdvancedOptions;
-import net.sf.jftp.gui.tasks.BookmarkItem;
-import net.sf.jftp.gui.tasks.BookmarkManager;
-import net.sf.jftp.gui.tasks.Displayer;
-import net.sf.jftp.gui.tasks.HttpBrowser;
-import net.sf.jftp.gui.tasks.HttpDownloader;
-import net.sf.jftp.gui.tasks.LastConnections;
-import net.sf.jftp.gui.tasks.NativeHttpBrowser;
-import net.sf.jftp.gui.tasks.ProxyChooser;
-import net.sf.jftp.net.*;
-import net.sf.jftp.net.wrappers.StartConnection;
-import net.sf.jftp.system.logging.Log;
-import net.sf.jftp.tools.*;
-import net.sf.jftp.util.*;
+import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.Presentation.gui.framework.*;
+import net.sf.jftp.Presentation.gui.hostchooser.HostChooser;
+import net.sf.jftp.Presentation.gui.hostchooser.NfsHostChooser;
+import net.sf.jftp.Presentation.gui.hostchooser.SftpHostChooser;
+import net.sf.jftp.Presentation.gui.hostchooser.SmbHostChooser;
+import net.sf.jftp.Presentation.gui.hostchooser.WebdavHostChooser;
+import net.sf.jftp.Presentation.gui.tasks.AddBookmarks;
+import net.sf.jftp.Presentation.gui.tasks.AdvancedOptions;
+import net.sf.jftp.Presentation.gui.tasks.BookmarkItem;
+import net.sf.jftp.Presentation.gui.tasks.BookmarkManager;
+import net.sf.jftp.Presentation.gui.tasks.Displayer;
+import net.sf.jftp.Presentation.gui.tasks.HttpBrowser;
+import net.sf.jftp.Presentation.gui.tasks.HttpDownloader;
+import net.sf.jftp.Presentation.gui.tasks.LastConnections;
+import net.sf.jftp.Presentation.gui.tasks.NativeHttpBrowser;
+import net.sf.jftp.Presentation.gui.tasks.ProxyChooser;
+import net.sf.jftp.DataSource.net.*;
+import net.sf.jftp.DataSource.net.wrappers.StartConnection;
+import net.sf.jftp.Domain.system.logging.Log;
+import net.sf.jftp.DataSource.tools.*;
+import net.sf.jftp.Domain.util.*;
 
 import java.awt.*;
 import java.awt.event.*;

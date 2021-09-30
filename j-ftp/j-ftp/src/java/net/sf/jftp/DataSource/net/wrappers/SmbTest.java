@@ -1,4 +1,4 @@
-package net.sf.jftp.net.wrappers;
+package net.sf.jftp.DataSource.net.wrappers;
 
 import jcifs.netbios.NbtAddress;
 import jcifs.util.*;

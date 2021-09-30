@@ -1,4 +1,4 @@
-package net.sf.jftp.gui.base.dir;
+package net.sf.jftp.Presentation.gui.base.dir;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -19,7 +19,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import net.sf.jftp.JFtp;
-import net.sf.jftp.config.Settings;
+import net.sf.jftp.Domain.config.Settings;
 
 
 public class TableUtils {

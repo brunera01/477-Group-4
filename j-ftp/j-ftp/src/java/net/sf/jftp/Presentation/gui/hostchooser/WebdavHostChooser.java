@@ -13,7 +13,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package net.sf.jftp.gui.hostchooser;
+package net.sf.jftp.Presentation.gui.hostchooser;
 
 import java.awt.BorderLayout;
 import java.awt.Cursor;
@@ -31,13 +31,13 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 
 import net.sf.jftp.JFtp;
-import net.sf.jftp.gui.framework.HButton;
-import net.sf.jftp.gui.framework.HFrame;
-import net.sf.jftp.gui.framework.HPanel;
-import net.sf.jftp.gui.framework.HPasswordField;
-import net.sf.jftp.gui.framework.HTextField;
-import net.sf.jftp.net.ConnectionListener;
-import net.sf.jftp.net.wrappers.WebdavConnection;
+import net.sf.jftp.Presentation.gui.framework.HButton;
+import net.sf.jftp.Presentation.gui.framework.HFrame;
+import net.sf.jftp.Presentation.gui.framework.HPanel;
+import net.sf.jftp.Presentation.gui.framework.HPasswordField;
+import net.sf.jftp.Presentation.gui.framework.HTextField;
+import net.sf.jftp.DataSource.net.ConnectionListener;
+import net.sf.jftp.DataSource.net.wrappers.WebdavConnection;
 
 
 public class WebdavHostChooser extends HFrame implements ActionListener,

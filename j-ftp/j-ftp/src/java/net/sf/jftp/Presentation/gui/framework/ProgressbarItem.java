@@ -1,4 +1,4 @@
-package net.sf.jftp.gui.framework;
+package net.sf.jftp.Presentation.gui.framework;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -7,7 +7,7 @@ import java.awt.Insets;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
-import net.sf.jftp.gui.base.dir.DirEntry;
+import net.sf.jftp.Presentation.gui.base.dir.DirEntry;
 
 public class ProgressbarItem extends JPanel {
 

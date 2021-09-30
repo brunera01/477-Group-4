@@ -1,4 +1,4 @@
-package net.sf.jftp.gui.framework;
+package net.sf.jftp.Presentation.gui.framework;
 
 import java.awt.Component;
 import java.awt.GridLayout;
@@ -8,7 +8,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import net.sf.jftp.gui.base.dir.DirEntry;
+import net.sf.jftp.Presentation.gui.base.dir.DirEntry;
 
 public class ProgressBarList extends JPanel {
 	

@@ -1,4 +1,4 @@
-package net.sf.jftp.gui.base.dir;
+package net.sf.jftp.Presentation.gui.base.dir;
 
 import javax.swing.JList;
 import javax.swing.table.AbstractTableModel;

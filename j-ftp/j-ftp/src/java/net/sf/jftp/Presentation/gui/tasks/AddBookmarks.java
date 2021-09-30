@@ -15,15 +15,15 @@
  */
 
 //NOTE TO SELF: use setModal here somewhere?
-package net.sf.jftp.gui.tasks;
+package net.sf.jftp.Presentation.gui.tasks;
 
 import net.sf.jftp.*;
-import net.sf.jftp.config.*;
-import net.sf.jftp.gui.framework.*;
-import net.sf.jftp.net.*;
-import net.sf.jftp.net.wrappers.StartConnection;
-import net.sf.jftp.system.StringUtils;
-import net.sf.jftp.util.*;
+import net.sf.jftp.Domain.config.*;
+import net.sf.jftp.Presentation.gui.framework.*;
+import net.sf.jftp.DataSource.net.*;
+import net.sf.jftp.DataSource.net.wrappers.StartConnection;
+import net.sf.jftp.Domain.system.StringUtils;
+import net.sf.jftp.Domain.util.*;
 
 import java.awt.*;
 import java.awt.event.*;

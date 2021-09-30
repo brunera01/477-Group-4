@@ -1,4 +1,4 @@
-package net.sf.jftp.gui.framework;
+package net.sf.jftp.Presentation.gui.framework;
 
 import java.awt.datatransfer.*;
 import java.awt.dnd.*;

@@ -1,4 +1,4 @@
-package net.sf.jftp.net;
+package net.sf.jftp.DataSource.net;
 
 
 

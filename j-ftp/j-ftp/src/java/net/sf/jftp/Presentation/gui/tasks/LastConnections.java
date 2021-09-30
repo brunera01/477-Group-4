@@ -16,12 +16,12 @@
 
 //TODO: Having capacity passed to these methods is redundant, take it out
 //*** (should it be in GUI dir?)
-package net.sf.jftp.gui.tasks;
+package net.sf.jftp.Presentation.gui.tasks;
 
 import net.sf.jftp.JFtp;
 
 //***
-import net.sf.jftp.config.*;
+import net.sf.jftp.Domain.config.*;
 
 import java.awt.*;
 import java.awt.event.*;

@@ -13,7 +13,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package net.sf.jftp.gui.base;
+package net.sf.jftp.Presentation.gui.base;
 
 import java.awt.BorderLayout;
 import java.awt.Cursor;
@@ -46,33 +46,33 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionListener;
 
 import net.sf.jftp.JFtp;
-import net.sf.jftp.config.SaveSet;
-import net.sf.jftp.config.Settings;
-import net.sf.jftp.gui.base.dir.DirCanvas;
-import net.sf.jftp.gui.base.dir.DirCellRenderer;
-import net.sf.jftp.gui.base.dir.DirComponent;
-import net.sf.jftp.gui.base.dir.DirEntry;
-import net.sf.jftp.gui.base.dir.DirLister;
-import net.sf.jftp.gui.base.dir.DirPanel;
-import net.sf.jftp.gui.base.dir.TableUtils;
-import net.sf.jftp.gui.framework.HFrame;
-import net.sf.jftp.gui.framework.HImage;
-import net.sf.jftp.gui.framework.HImageButton;
-import net.sf.jftp.gui.tasks.Creator;
-import net.sf.jftp.gui.tasks.Displayer;
-import net.sf.jftp.gui.tasks.PathChanger;
-import net.sf.jftp.gui.tasks.RemoteCommand;
-import net.sf.jftp.net.BasicConnection;
-import net.sf.jftp.net.ConnectionListener;
-import net.sf.jftp.net.FilesystemConnection;
-import net.sf.jftp.net.FtpConnection;
-import net.sf.jftp.net.wrappers.Sftp2Connection;
-import net.sf.jftp.net.wrappers.SmbConnection;
-import net.sf.jftp.system.LocalIO;
-import net.sf.jftp.system.StringUtils;
-import net.sf.jftp.system.UpdateDaemon;
-import net.sf.jftp.system.logging.Log;
-import net.sf.jftp.tools.Shell;
+import net.sf.jftp.Domain.config.SaveSet;
+import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.Presentation.gui.base.dir.DirCanvas;
+import net.sf.jftp.Presentation.gui.base.dir.DirCellRenderer;
+import net.sf.jftp.Presentation.gui.base.dir.DirComponent;
+import net.sf.jftp.Presentation.gui.base.dir.DirEntry;
+import net.sf.jftp.Presentation.gui.base.dir.DirLister;
+import net.sf.jftp.Presentation.gui.base.dir.DirPanel;
+import net.sf.jftp.Presentation.gui.base.dir.TableUtils;
+import net.sf.jftp.Presentation.gui.framework.HFrame;
+import net.sf.jftp.Presentation.gui.framework.HImage;
+import net.sf.jftp.Presentation.gui.framework.HImageButton;
+import net.sf.jftp.Presentation.gui.tasks.Creator;
+import net.sf.jftp.Presentation.gui.tasks.Displayer;
+import net.sf.jftp.Presentation.gui.tasks.PathChanger;
+import net.sf.jftp.Presentation.gui.tasks.RemoteCommand;
+import net.sf.jftp.DataSource.net.BasicConnection;
+import net.sf.jftp.DataSource.net.ConnectionListener;
+import net.sf.jftp.DataSource.net.FilesystemConnection;
+import net.sf.jftp.DataSource.net.FtpConnection;
+import net.sf.jftp.DataSource.net.wrappers.Sftp2Connection;
+import net.sf.jftp.DataSource.net.wrappers.SmbConnection;
+import net.sf.jftp.Domain.system.LocalIO;
+import net.sf.jftp.Domain.system.StringUtils;
+import net.sf.jftp.Domain.system.UpdateDaemon;
+import net.sf.jftp.Domain.system.logging.Log;
+import net.sf.jftp.DataSource.tools.Shell;
 
 
 public class RemoteDir extends DirComponent implements ListSelectionListener,

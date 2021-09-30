@@ -13,7 +13,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package net.sf.jftp.tools;
+package net.sf.jftp.DataSource.tools;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -30,8 +30,8 @@ import java.util.Hashtable;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
-import net.sf.jftp.system.LocalIO;
-import net.sf.jftp.system.logging.Log;
+import net.sf.jftp.Domain.system.LocalIO;
+import net.sf.jftp.Domain.system.logging.Log;
 
 
 public class FileSearch 

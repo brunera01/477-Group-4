@@ -13,7 +13,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package net.sf.jftp.gui.base.dir;
+package net.sf.jftp.Presentation.gui.base.dir;
 
 import java.awt.Image;
 import java.awt.event.ActionListener;
@@ -24,9 +24,9 @@ import java.util.Hashtable;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import net.sf.jftp.config.Settings;
-import net.sf.jftp.gui.framework.HImage;
-import net.sf.jftp.net.FtpConnection;
+import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.Presentation.gui.framework.HImage;
+import net.sf.jftp.DataSource.net.FtpConnection;
 
 
 public class DirEntry

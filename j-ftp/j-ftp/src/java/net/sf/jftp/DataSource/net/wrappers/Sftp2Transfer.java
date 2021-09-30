@@ -1,8 +1,8 @@
-package net.sf.jftp.net.wrappers;
+package net.sf.jftp.DataSource.net.wrappers;
 
 import java.util.Vector;
 
-import net.sf.jftp.net.Transfer;
+import net.sf.jftp.DataSource.net.Transfer;
 
 public class Sftp2Transfer implements Runnable
 {

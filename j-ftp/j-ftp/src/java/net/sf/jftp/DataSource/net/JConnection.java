@@ -13,7 +13,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package net.sf.jftp.net;
+package net.sf.jftp.DataSource.net;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -23,8 +23,8 @@ import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.Socket;
 
-import net.sf.jftp.config.Settings;
-import net.sf.jftp.system.logging.Log;
+import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.Domain.system.logging.Log;
 
 
 /**

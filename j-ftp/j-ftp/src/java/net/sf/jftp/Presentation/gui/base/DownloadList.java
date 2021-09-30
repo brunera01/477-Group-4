@@ -13,7 +13,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package net.sf.jftp.gui.base;
+package net.sf.jftp.Presentation.gui.base;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -26,21 +26,21 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
 import net.sf.jftp.JFtp;
-import net.sf.jftp.config.Settings;
-import net.sf.jftp.gui.base.dir.DirEntry;
-import net.sf.jftp.gui.base.dir.DirPanel;
-import net.sf.jftp.gui.framework.HImage;
-import net.sf.jftp.gui.framework.HImageButton;
-import net.sf.jftp.gui.framework.HPanel;
-import net.sf.jftp.gui.framework.ProgressBarList;
-import net.sf.jftp.gui.framework.ProgressbarItem;
-import net.sf.jftp.net.ConnectionHandler;
-import net.sf.jftp.net.DataConnection;
-import net.sf.jftp.net.Transfer;
-import net.sf.jftp.net.wrappers.HttpTransfer;
-import net.sf.jftp.system.LocalIO;
-import net.sf.jftp.system.UpdateDaemon;
-import net.sf.jftp.system.logging.Log;
+import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.Presentation.gui.base.dir.DirEntry;
+import net.sf.jftp.Presentation.gui.base.dir.DirPanel;
+import net.sf.jftp.Presentation.gui.framework.HImage;
+import net.sf.jftp.Presentation.gui.framework.HImageButton;
+import net.sf.jftp.Presentation.gui.framework.HPanel;
+import net.sf.jftp.Presentation.gui.framework.ProgressBarList;
+import net.sf.jftp.Presentation.gui.framework.ProgressbarItem;
+import net.sf.jftp.DataSource.net.ConnectionHandler;
+import net.sf.jftp.DataSource.net.DataConnection;
+import net.sf.jftp.DataSource.net.Transfer;
+import net.sf.jftp.DataSource.net.wrappers.HttpTransfer;
+import net.sf.jftp.Domain.system.LocalIO;
+import net.sf.jftp.Domain.system.UpdateDaemon;
+import net.sf.jftp.Domain.system.logging.Log;
 
 
 public class DownloadList extends HPanel implements ActionListener

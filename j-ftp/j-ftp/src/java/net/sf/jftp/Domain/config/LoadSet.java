@@ -13,14 +13,14 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package net.sf.jftp.config;
+package net.sf.jftp.Domain.config;
 
 import net.sf.jftp.*;
-import net.sf.jftp.config.*;
-import net.sf.jftp.gui.*;
-import net.sf.jftp.gui.base.UIUtils;
-import net.sf.jftp.system.logging.Log;
-import net.sf.jftp.util.*;
+import net.sf.jftp.Domain.config.*;
+import net.sf.jftp.Presentation.gui.*;
+import net.sf.jftp.Presentation.gui.base.UIUtils;
+import net.sf.jftp.Domain.system.logging.Log;
+import net.sf.jftp.Domain.util.*;
 
 import java.io.*;
 

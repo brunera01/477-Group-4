@@ -1,4 +1,4 @@
-package net.sf.jftp.net.wrappers;
+package net.sf.jftp.DataSource.net.wrappers;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -7,13 +7,13 @@ import java.io.FileOutputStream;
 import java.net.URL;
 import java.util.Vector;
 
-import net.sf.jftp.net.ConnectionHandler;
-import net.sf.jftp.net.ConnectionListener;
-import net.sf.jftp.net.DataConnection;
-import net.sf.jftp.net.FtpConnection;
-import net.sf.jftp.net.Transfer;
-import net.sf.jftp.system.StringUtils;
-import net.sf.jftp.system.logging.Log;
+import net.sf.jftp.DataSource.net.ConnectionHandler;
+import net.sf.jftp.DataSource.net.ConnectionListener;
+import net.sf.jftp.DataSource.net.DataConnection;
+import net.sf.jftp.DataSource.net.FtpConnection;
+import net.sf.jftp.DataSource.net.Transfer;
+import net.sf.jftp.Domain.system.StringUtils;
+import net.sf.jftp.Domain.system.logging.Log;
 
 
 public class HttpTransfer extends Transfer implements Runnable

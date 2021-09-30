@@ -4,7 +4,7 @@ import java.applet.Applet;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 
-import net.sf.jftp.config.Settings;
+import net.sf.jftp.Domain.config.Settings;
 
 
 public class JFtpApplet extends Applet

@@ -3,8 +3,8 @@ package yourTestsHere;
 import static org.junit.Assert.*;
 
 import net.sf.jftp.JFtp;
-import net.sf.jftp.gui.base.LocalDir;
-import net.sf.jftp.gui.base.RemoteDir;
+import net.sf.jftp.Presentation.gui.base.LocalDir;
+import net.sf.jftp.Presentation.gui.base.RemoteDir;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -1,7 +1,7 @@
-package net.sf.jftp.gui.base;
+package net.sf.jftp.Presentation.gui.base;
 
 import net.sf.jftp.JFtp;
-import net.sf.jftp.config.Settings;
+import net.sf.jftp.Domain.config.Settings;
 
 
 public class LogFlusher implements Runnable

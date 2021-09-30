@@ -13,7 +13,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package net.sf.jftp.gui.base;
+package net.sf.jftp.Presentation.gui.base;
 
 import java.awt.Desktop;
 
@@ -25,7 +25,7 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 
-import net.sf.jftp.tools.Shell;
+import net.sf.jftp.DataSource.tools.Shell;
 
 
 public class UIUtils

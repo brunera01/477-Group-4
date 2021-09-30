@@ -1,4 +1,4 @@
-package net.sf.jftp.event;
+package net.sf.jftp.Presentation.event;
 
 public interface FtpEventConstants
 {

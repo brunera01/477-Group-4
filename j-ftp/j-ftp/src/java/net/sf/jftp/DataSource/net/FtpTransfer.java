@@ -1,10 +1,10 @@
-package net.sf.jftp.net;
+package net.sf.jftp.DataSource.net;
 
 import java.io.File;
 import java.util.Vector;
 
-import net.sf.jftp.config.Settings;
-import net.sf.jftp.system.logging.Log;
+import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.Domain.system.logging.Log;
 
 
 /**

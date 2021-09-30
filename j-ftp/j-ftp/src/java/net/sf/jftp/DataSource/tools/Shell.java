@@ -1,4 +1,4 @@
-package net.sf.jftp.tools;
+package net.sf.jftp.DataSource.tools;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -20,8 +20,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.text.DefaultCaret;
 
-import net.sf.jftp.gui.framework.HFrame;
-import net.sf.jftp.system.logging.Log;
+import net.sf.jftp.Presentation.gui.framework.HFrame;
+import net.sf.jftp.Domain.system.logging.Log;
 
 public class Shell extends HFrame implements Runnable
 {
