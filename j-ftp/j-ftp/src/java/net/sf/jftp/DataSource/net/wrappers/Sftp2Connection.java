@@ -16,6 +16,7 @@
 package net.sf.jftp.DataSource.net.wrappers;
 
 import java.io.BufferedInputStream;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -29,7 +30,7 @@ import java.util.Vector;
 
 import javax.swing.JOptionPane;
 
-import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.DataSource.DataSettings;
 import net.sf.jftp.DataSource.net.BasicConnection;
 import net.sf.jftp.DataSource.net.ConnectionListener;
 import net.sf.jftp.DataSource.net.DataConnection;
@@ -433,7 +434,7 @@ public class Sftp2Connection implements BasicConnection
 
     public int handleUpload(String f)
     {
-        if(Settings.getEnableSftpMultiThreading())
+        if(DataSettings.getEnableSftpMultiThreading())
         {
 
             Sftp2Transfer t = new Sftp2Transfer(getLocalPath(), getPWD(),
@@ -450,7 +451,7 @@ public class Sftp2Connection implements BasicConnection
 
     public int handleDownload(String f) 
     {
-        if(Settings.getEnableSftpMultiThreading())
+        if(DataSettings.getEnableSftpMultiThreading())
         {
             Sftp2Transfer t = new Sftp2Transfer(getLocalPath(), getPWD(),
                     f, user, pass, listeners,
@@ -896,7 +897,7 @@ public class Sftp2Connection implements BasicConnection
         {
             ConnectionListener listener = (ConnectionListener) listeners.elementAt(i);
 
-            if(shortProgress && Settings.shortProgress)
+            if(shortProgress && DataSettings.shortProgress)
             {
                 if(type.startsWith(DataConnection.DFINISHED))
                 {

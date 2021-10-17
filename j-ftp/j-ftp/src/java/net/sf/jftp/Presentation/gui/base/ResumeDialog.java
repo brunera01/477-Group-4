@@ -16,7 +16,7 @@
 package net.sf.jftp.Presentation.gui.base;
 
 import net.sf.jftp.*;
-import net.sf.jftp.Domain.config.*;
+import net.sf.jftp.Presentation.GUISettings;
 import net.sf.jftp.Presentation.gui.base.dir.DirEntry;
 import net.sf.jftp.Presentation.gui.framework.*;
 import net.sf.jftp.DataSource.net.*;
@@ -112,7 +112,7 @@ public class ResumeDialog extends HFrame implements ActionListener
 
     private void transfer()
     {
-        if((dirEntry.getRawSize() < Settings.smallSize) &&
+        if((dirEntry.getRawSize() < GUISettings.smallSize) &&
                !dirEntry.isDirectory())
         {
             JFtp.remoteDir.getCon().download(dirEntry.file);

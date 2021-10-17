@@ -16,6 +16,7 @@
 package net.sf.jftp.Presentation.gui.base;
 
 import java.awt.BorderLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Enumeration;
@@ -26,7 +27,7 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
 import net.sf.jftp.JFtp;
-import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.Presentation.GUISettings;
 import net.sf.jftp.Presentation.gui.base.dir.DirEntry;
 import net.sf.jftp.Presentation.gui.base.dir.DirPanel;
 import net.sf.jftp.Presentation.gui.framework.HImage;
@@ -49,18 +50,18 @@ public class DownloadList extends HPanel implements ActionListener
     private ProgressBarList list = new ProgressBarList();
     private Hashtable downloads = new Hashtable();
     private long oldtime = 0;
-    private HImageButton resume = new HImageButton(Settings.resumeImage,
+    private HImageButton resume = new HImageButton(GUISettings.resumeImage,
                                                    "resume",
                                                    "Resume selected transfer...",
                                                    this);
-    private HImageButton pause = new HImageButton(Settings.pauseImage, "pause",
+    private HImageButton pause = new HImageButton(GUISettings.pauseImage, "pause",
                                                   "Pause selected transfer...",
                                                   this);
-    private HImageButton cancel = new HImageButton(Settings.deleteImage,
+    private HImageButton cancel = new HImageButton(GUISettings.deleteImage,
                                                    "delete",
                                                    "Cancel selected transfer...",
                                                    this);
-    private HImageButton clear = new HImageButton(Settings.clearImage, "clear",
+    private HImageButton clear = new HImageButton(GUISettings.clearImage, "clear",
                                                   "Remove old/stalled items from output...",
                                                   this);   
     private JScrollPane scroll;
@@ -69,13 +70,13 @@ public class DownloadList extends HPanel implements ActionListener
     {
         setLayout(new BorderLayout());
         
-		resume.setRolloverIcon(new ImageIcon(HImage.getImage(this, Settings.resumeImage2)));
+		resume.setRolloverIcon(new ImageIcon(HImage.getImage(this, GUISettings.resumeImage2)));
 		resume.setRolloverEnabled(true);
-		pause.setRolloverIcon(new ImageIcon(HImage.getImage(this, Settings.pauseImage2)));
+		pause.setRolloverIcon(new ImageIcon(HImage.getImage(this, GUISettings.pauseImage2)));
 		pause.setRolloverEnabled(true);
-		clear.setRolloverIcon(new ImageIcon(HImage.getImage(this, Settings.clearImage2)));
+		clear.setRolloverIcon(new ImageIcon(HImage.getImage(this, GUISettings.clearImage2)));
 		clear.setRolloverEnabled(true);
-		cancel.setRolloverIcon(new ImageIcon(HImage.getImage(this, Settings.deleteImage2)));
+		cancel.setRolloverIcon(new ImageIcon(HImage.getImage(this, GUISettings.deleteImage2)));
 		cancel.setRolloverEnabled(true);
 
         HPanel cmdP = new HPanel();
@@ -547,7 +548,7 @@ public class DownloadList extends HPanel implements ActionListener
     {
         long time = System.currentTimeMillis();
 
-        if((time - oldtime) < Settings.refreshDelay)
+        if((time - oldtime) < GUISettings.refreshDelay)
         {
             return false;
         }

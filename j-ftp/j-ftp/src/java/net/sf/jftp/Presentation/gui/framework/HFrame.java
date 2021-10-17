@@ -15,11 +15,12 @@
  */
 package net.sf.jftp.Presentation.gui.framework;
 
-import net.sf.jftp.Domain.config.Settings;
 
 import java.awt.*;
 
 import javax.swing.*;
+
+import net.sf.jftp.Presentation.GUISettings;
 
 
 public class HFrame extends JDialog
@@ -29,7 +30,7 @@ public class HFrame extends JDialog
 		setFont(GUIDefaults.font);
 		setTitle("JFtp...");
 		setBackground(new JLabel().getBackground());
-		setResizable(Settings.resize);
+		setResizable(GUISettings.resize);
 
 		//setModal(true);
 		fixLocation();

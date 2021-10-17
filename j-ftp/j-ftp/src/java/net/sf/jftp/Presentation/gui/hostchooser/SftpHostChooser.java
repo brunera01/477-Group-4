@@ -16,6 +16,7 @@
 package net.sf.jftp.Presentation.gui.hostchooser;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -39,7 +40,7 @@ import net.miginfocom.swing.MigLayout;
 import net.sf.jftp.JFtp;
 import net.sf.jftp.Domain.config.LoadSet;
 import net.sf.jftp.Domain.config.SaveSet;
-import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.Presentation.GUISettings;
 import net.sf.jftp.Presentation.gui.framework.HButton;
 import net.sf.jftp.Presentation.gui.framework.HFrame;
 import net.sf.jftp.Presentation.gui.framework.HInsetPanel;
@@ -100,13 +101,13 @@ public class SftpHostChooser extends HFrame implements ActionListener,
 
         try
         {
-            File f = new File(Settings.appHomeDir);
+            File f = new File(GUISettings.appHomeDir);
             f.mkdir();
 
-            File f1 = new File(Settings.login);
+            File f1 = new File(GUISettings.login);
             f1.createNewFile();
 
-            File f2 = new File(Settings.login_def_sftp);
+            File f2 = new File(GUISettings.login_def_sftp);
             f2.createNewFile();
         }
         catch(IOException ex)
@@ -114,7 +115,7 @@ public class SftpHostChooser extends HFrame implements ActionListener,
             ex.printStackTrace();
         } 
 
-        String[] login = LoadSet.loadSet(Settings.login_def_sftp);
+        String[] login = LoadSet.loadSet(GUISettings.login_def_sftp);
 
         if((login[0] != null) && (login.length > 1))
         {
@@ -127,7 +128,7 @@ public class SftpHostChooser extends HFrame implements ActionListener,
             }
         }
 
-        if(Settings.getStorePasswords())
+        if(GUISettings.getStorePasswords())
         {
             if((login != null) && (login.length > 2) && (login[2] != null))
             {
@@ -275,7 +276,7 @@ public class SftpHostChooser extends HFrame implements ActionListener,
         	{
         		boolean status;
 
-        		SaveSet s = new SaveSet(Settings.login_def_sftp, htmp,
+        		SaveSet s = new SaveSet(GUISettings.login_def_sftp, htmp,
         				utmp, ptmp, new String("" + potmp), "null", "null");
 
     			Sftp2Connection con2 = new Sftp2Connection(htmp, ""+potmp, keyfileName);

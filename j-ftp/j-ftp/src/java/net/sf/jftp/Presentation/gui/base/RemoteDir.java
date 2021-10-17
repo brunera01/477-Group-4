@@ -16,6 +16,7 @@
 package net.sf.jftp.Presentation.gui.base;
 
 import java.awt.BorderLayout;
+
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -47,7 +48,7 @@ import javax.swing.event.ListSelectionListener;
 
 import net.sf.jftp.JFtp;
 import net.sf.jftp.Domain.config.SaveSet;
-import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.Presentation.GUISettings;
 import net.sf.jftp.Presentation.gui.base.dir.DirCanvas;
 import net.sf.jftp.Presentation.gui.base.dir.DirCellRenderer;
 import net.sf.jftp.Presentation.gui.base.dir.DirComponent;
@@ -128,9 +129,9 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
     private DefaultListModel jlm;
     private JScrollPane jsp = new JScrollPane(jl);
     private int tmpindex = -1;
-    private HImageButton list = new HImageButton(Settings.listImage, "list",
+    private HImageButton list = new HImageButton(GUISettings.listImage, "list",
                                                  "Show remote listing...", this);
-    private HImageButton transferType = new HImageButton(Settings.typeImage,
+    private HImageButton transferType = new HImageButton(GUISettings.typeImage,
                                                          "type",
                                                          "Toggle transfer type...",
                                                          this);
@@ -192,45 +193,45 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
         props.addActionListener(this);
         popupMenu.add(props);
 
-        rnButton = new HImageButton(Settings.textFileImage, rnString,
+        rnButton = new HImageButton(GUISettings.textFileImage, rnString,
                                     "Rename selected file or directory", this);
         rnButton.setToolTipText("Rename selected");
 
         list.setToolTipText("Show remote listing...");
         transferType.setToolTipText("Toggle transfer type...");
 
-        deleteButton = new HImageButton(Settings.deleteImage, deleteString,
+        deleteButton = new HImageButton(GUISettings.deleteImage, deleteString,
                                         "Delete  selected", this);
         deleteButton.setToolTipText("Delete selected");
 
-        mkdirButton = new HImageButton(Settings.mkdirImage, mkdirString,
+        mkdirButton = new HImageButton(GUISettings.mkdirImage, mkdirString,
                                        "Create a new directory", this);
         mkdirButton.setToolTipText("Create directory");
 
-        refreshButton = new HImageButton(Settings.refreshImage, refreshString,
+        refreshButton = new HImageButton(GUISettings.refreshImage, refreshString,
                                          "Refresh current directory", this);
         refreshButton.setToolTipText("Refresh directory");
-		refreshButton.setRolloverIcon(new ImageIcon(HImage.getImage(this, Settings.refreshImage2)));
+		refreshButton.setRolloverIcon(new ImageIcon(HImage.getImage(this, GUISettings.refreshImage2)));
 		refreshButton.setRolloverEnabled(true);
 
-        cdButton = new HImageButton(Settings.cdImage, cdString,
+        cdButton = new HImageButton(GUISettings.cdImage, cdString,
                                     "Change directory", this);
         cdButton.setToolTipText("Change directory");
 
-        cmdButton = new HImageButton(Settings.cmdImage, cmdString,
+        cmdButton = new HImageButton(GUISettings.cmdImage, cmdString,
                                      "Execute remote command", this);
         cmdButton.setToolTipText("Execute remote command");
 
-        downloadButton = new HImageButton(Settings.downloadImage,
+        downloadButton = new HImageButton(GUISettings.downloadImage,
                                           downloadString, "Download selected",
                                           this);
         downloadButton.setToolTipText("Download selected");
 
-        queueButton = new HImageButton(Settings.queueImage, queueString,
+        queueButton = new HImageButton(GUISettings.queueImage, queueString,
                                        "Queue selected", this);
         queueButton.setToolTipText("Queue selected");
 
-        cdUpButton = new HImageButton(Settings.cdUpImage, cdUpString,
+        cdUpButton = new HImageButton(GUISettings.cdUpImage, cdUpString,
                                       "Go to Parent Directory", this);
         cdUpButton.setToolTipText("Go to Parent Directory"); 
 
@@ -290,7 +291,7 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
         jlm = new DefaultListModel();
         jl = new JList(jlm);
         jl.setCellRenderer(new DirCellRenderer());
-        jl.setVisibleRowCount(Settings.visibleFileRows);
+        jl.setVisibleRowCount(GUISettings.visibleFileRows);
         jl.setDragEnabled(true);
         jl.setDropTarget(JFtp.statusP.jftp.dropTarget);
 
@@ -409,7 +410,7 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
         
         TableUtils.tryToEnableRowSorting(table);
         
-        if(Settings.IS_JAVA_1_6) {
+        if(GUISettings.IS_JAVA_1_6) {
         	//sorter.setVisible(false);
         	buttonPanel.remove(sorter);
         }
@@ -624,7 +625,7 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
         {
             lock(false);
 
-            if(Settings.getAskToDelete())
+            if(GUISettings.getAskToDelete())
             {
                 if(!UITool.askToDelete(this))
                 {
@@ -663,7 +664,7 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
 
            
             int opt = JOptionPane.showOptionDialog(this, "Would you like to type one command or to open a shell?","Question", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, 
-            		new ImageIcon(HImage.getImage(this, Settings.helpImage)), new String[] {"Shell","Command", "Cancel"}, "Command");
+            		new ImageIcon(HImage.getImage(this, GUISettings.helpImage)), new String[] {"Shell","Command", "Cancel"}, "Command");
             
             if(opt == 1) {
             	RemoteCommand rc = new RemoteCommand();
@@ -703,14 +704,14 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
             		 Log.debug("Can only list FtpConnection output!");
             	}
             	
-            	PrintStream out = new PrintStream(Settings.ls_out);
+            	PrintStream out = new PrintStream(GUISettings.ls_out);
             	for(int i=0; i<((FtpConnection)con).currentListing.size(); i++) {
             		out.println(((FtpConnection)con).currentListing.get(i));
             	}
             	out.flush();
             	out.close();
             	
-                java.net.URL url = new java.io.File(Settings.ls_out).toURL();
+                java.net.URL url = new java.io.File(GUISettings.ls_out).toURL();
                 Displayer d = new Displayer(url, new Font("monospaced",Font.PLAIN, 11));
                 JFtp.desktop.add(d, new Integer(Integer.MAX_VALUE - 13));
             }
@@ -818,11 +819,11 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
 
             if(sortMode.equals("Date"))
             {
-                Settings.showDateNoSize = true;
+                GUISettings.showDateNoSize = true;
             }
             else
             {
-                Settings.showDateNoSize = false;
+                GUISettings.showDateNoSize = false;
             }
 
             fresh();
@@ -877,7 +878,7 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
         {
             public void run()
             {
-                boolean block = !Settings.getEnableMultiThreading();
+                boolean block = !GUISettings.getEnableMultiThreading();
 
                 if(!(con instanceof FtpConnection))
                 {
@@ -1073,7 +1074,7 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
         Log.out("remote connection failed");
 
         if((Integer.parseInt(reason) == FtpConnection.OFFLINE) &&
-               Settings.reconnect)
+               GUISettings.reconnect)
         {
             return;
         }
@@ -1143,7 +1144,7 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
                 {
                     sorter.removeItem("Date");
                     dateEnabled = false;
-                    Settings.showDateNoSize = false;
+                    GUISettings.showDateNoSize = false;
                     UpdateDaemon.updateRemoteDirGUI();
                 }
                 catch(Exception ex)
@@ -1193,7 +1194,7 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
             FtpConnection con = (FtpConnection) c;
 
             String tmp = con.getCachedPWD();
-            SaveSet s = new SaveSet(Settings.login_def, con.getHost(),
+            SaveSet s = new SaveSet(GUISettings.login_def, con.getHost(),
                                     con.getUsername(), con.getPassword(),
                                     Integer.toString(con.getPort()), tmp,
                                     con.getLocalPath());
@@ -1300,7 +1301,7 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
                 JFtp.dList.sizeCache.put(entry.file, new Long(s));
 
                 // ---------------------------------
-                if((entry.getRawSize() < Settings.smallSize) &&
+                if((entry.getRawSize() < GUISettings.smallSize) &&
                        !entry.isDirectory())
                 {
                     con.download(entry.file);
@@ -1381,7 +1382,7 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
     {
         File f = new File(JFtp.localDir.getPath() + dirEntry.file);
 
-        if(f.exists() && Settings.enableResuming && Settings.askToResume)
+        if(f.exists() && GUISettings.enableResuming && GUISettings.askToResume)
         {
             ResumeDialog r = new ResumeDialog(dirEntry); // ResumeDialog handels the rest
 

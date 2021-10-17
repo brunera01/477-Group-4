@@ -1,6 +1,7 @@
 package net.sf.jftp.Presentation.gui.base.dir;
 
 import java.awt.BorderLayout;
+
 import java.awt.Component;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
@@ -19,7 +20,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import net.sf.jftp.JFtp;
-import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.Presentation.GUISettings;
 
 
 public class TableUtils {
@@ -251,7 +252,7 @@ public class TableUtils {
 	public static void layoutTable(JList list, JTable listTbl, Vector names) {
 		    listTbl.setModel(generateTableModel(list));
 		    
-		    if(Settings.useFixedTableWidths) {
+		    if(GUISettings.useFixedTableWidths) {
 		    	setFixedWidths(listTbl);
 		    }
 		    else {

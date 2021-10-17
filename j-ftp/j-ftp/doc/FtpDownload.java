@@ -1,11 +1,12 @@
 import net.sf.jftp.DataSource.net.ConnectionHandler;
+
 import net.sf.jftp.DataSource.net.ConnectionListener;
 import net.sf.jftp.DataSource.net.DataConnection;
 import net.sf.jftp.DataSource.net.FtpConnection;
+import net.sf.jftp.DataSource.DataSettings;
 import net.sf.jftp.DataSource.net.BasicConnection;
 import net.sf.jftp.Domain.system.logging.Log;
 import net.sf.jftp.Domain.system.logging.Logger;
-import net.sf.jftp.Domain.config.Settings;
 
 import java.io.*;
 
@@ -30,7 +31,7 @@ public class FtpDownload implements Logger, ConnectionListener
  public FtpDownload(String host, String file)
  {
 	// the ftp client default is very small, you may want to increase this
-	Settings.bufferSize = 16384; 
+	DataSettings.bufferSize = 16384; 
 
 	long current = System.currentTimeMillis();
 	//System.out.println("1) "+(System.currentTimeMillis()-current)+"ms.");

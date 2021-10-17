@@ -16,10 +16,11 @@
 package net.sf.jftp.Domain.system;
 
 import net.sf.jftp.JFtp;
-import net.sf.jftp.Domain.config.Settings;
+
 import net.sf.jftp.Presentation.gui.*;
 import net.sf.jftp.Presentation.gui.base.LocalDir;
 import net.sf.jftp.Presentation.gui.base.RemoteDir;
+import net.sf.jftp.Domain.DomainSettings;
 import net.sf.jftp.Domain.util.*;
 
 
@@ -120,7 +121,7 @@ public class UpdateDaemon implements Runnable
                     Thread.sleep(500);
                 }
 
-                Thread.sleep(Settings.uiRefresh);
+                Thread.sleep(DomainSettings.uiRefresh);
             }
             catch(Exception ex)
             {

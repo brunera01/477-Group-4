@@ -16,9 +16,10 @@
 package net.sf.jftp.Domain.util;
 
 import net.sf.jftp.*;
-import net.sf.jftp.Domain.config.*;
+
 import net.sf.jftp.Presentation.gui.framework.*;
 import net.sf.jftp.DataSource.net.*;
+import net.sf.jftp.Domain.DomainSettings;
 import net.sf.jftp.Domain.util.*;
 
 import java.awt.*;
@@ -39,7 +40,7 @@ alternative connection class, used for raw tcp/ip connection
 */
 public class JRawConnection implements Runnable
 {
-    private int timeout = Settings.connectionTimeout;
+    private int timeout = DomainSettings.connectionTimeout;
     private String host;
     private int port;
     private PrintStream out;

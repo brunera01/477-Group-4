@@ -16,7 +16,8 @@
 package net.sf.jftp.Presentation.gui.base;
 
 import net.sf.jftp.JFtp;
-import net.sf.jftp.Domain.config.Settings;
+
+import net.sf.jftp.Presentation.GUISettings;
 import net.sf.jftp.Presentation.gui.framework.*;
 import net.sf.jftp.Presentation.gui.hostchooser.HostChooser;
 import net.sf.jftp.Presentation.gui.hostchooser.NfsHostChooser;
@@ -33,13 +34,11 @@ import net.sf.jftp.Presentation.gui.tasks.HttpDownloader;
 import net.sf.jftp.Presentation.gui.tasks.LastConnections;
 import net.sf.jftp.Presentation.gui.tasks.NativeHttpBrowser;
 import net.sf.jftp.Presentation.gui.tasks.ProxyChooser;
-import net.sf.jftp.DataSource.net.*;
 import net.sf.jftp.DataSource.net.wrappers.StartConnection;
 import net.sf.jftp.Domain.system.logging.Log;
 import net.sf.jftp.DataSource.tools.*;
 import net.sf.jftp.Domain.util.*;
 
-import java.awt.*;
 import java.awt.event.*;
 
 import java.io.*;
@@ -50,7 +49,6 @@ import java.util.*;
 
 import javax.swing.*;
 
-import javazoom.jl.decoder.*;
 import javazoom.jl.player.*;
 
 
@@ -58,13 +56,13 @@ import javazoom.jl.player.*;
 public class AppMenuBar extends JMenuBar implements ActionListener
 {
     public static JCheckBoxMenuItem fadeMenu = new JCheckBoxMenuItem("Enable Status Animation",
-                                                                     Settings.getEnableStatusAnimation());
+                                                                     GUISettings.getEnableStatusAnimation());
     public static JCheckBoxMenuItem askToDelete = new JCheckBoxMenuItem("Confirm Remove",
-                                                                        Settings.getAskToDelete());
+                                                                        GUISettings.getAskToDelete());
     public static JCheckBoxMenuItem debug = new JCheckBoxMenuItem("Verbose Console Debugging",
-                                                                  Settings.getEnableDebug());
+                                                                  GUISettings.getEnableDebug());
     public static JCheckBoxMenuItem disableLog = new JCheckBoxMenuItem("Disable Log",
-                                                                       Settings.getDisableLog());
+                                                                       GUISettings.getDisableLog());
     public static JMenuItem clearItems = new JMenuItem("Clear Finished Items");
     private JFtp jftp;
     JMenu file = new JMenu("File");
@@ -76,7 +74,7 @@ public class AppMenuBar extends JMenuBar implements ActionListener
     JMenu lf = new JMenu("Switch Look & Feel to");
     JMenu background = new JMenu("Desktop Background");
     JMenu ftp = new JMenu(" FTP");
-    JMenu smb = new JMenu(" SMB");
+   	JMenu smb = new JMenu(" SMB");
     JMenu sftp = new JMenu(" SFTP");
     JMenu security = new JMenu("Security");
     JMenu experimental = new JMenu("Experimental Features");
@@ -106,35 +104,35 @@ public class AppMenuBar extends JMenuBar implements ActionListener
     JMenuItem shell = new JMenuItem("Execute /bin/bash");
     JMenuItem loadAudio = new JMenuItem("Play MP3");
     JCheckBoxMenuItem rssDisabled = new JCheckBoxMenuItem("Enable RSS Feed",
-                                                          Settings.getEnableRSS());
+                                                          GUISettings.getEnableRSS());
     JCheckBoxMenuItem nl = new JCheckBoxMenuItem("Show Newline Option",
-                                                          Settings.showNewlineOption);
+                                                          GUISettings.showNewlineOption);
     JMenuItem loadSlash = new JMenuItem("Slashdot");
     JMenuItem loadCNN1 = new JMenuItem("CNN Top Stories");
     JMenuItem loadCNN2 = new JMenuItem("CNN World");
     JMenuItem loadCNN3 = new JMenuItem("CNN Tech");
     JMenuItem loadRss = new JMenuItem("Custom RSS Feed");
     JCheckBoxMenuItem stdback = new JCheckBoxMenuItem("Background Image",
-                                                      Settings.getUseBackground());
+                                                      GUISettings.getUseBackground());
     JCheckBoxMenuItem resuming = new JCheckBoxMenuItem("Enable Resuming",
-                                                       Settings.enableResuming);
+                                                       GUISettings.enableResuming);
     JCheckBoxMenuItem ask = new JCheckBoxMenuItem("Always Ask to Resume",
-                                                  Settings.askToResume);
+                                                  GUISettings.askToResume);
     JMenuItem proxy = new JMenuItem("Proxy Settings...");
     JCheckBoxMenuItem smbThreads = new JCheckBoxMenuItem("Multiple Connections",
-                                                         Settings.getEnableSmbMultiThreading());
+                                                         GUISettings.getEnableSmbMultiThreading());
     JCheckBoxMenuItem sftpThreads = new JCheckBoxMenuItem("Multiple Connections",
-                                                          Settings.getEnableSftpMultiThreading());
+                                                          GUISettings.getEnableSftpMultiThreading());
     JCheckBoxMenuItem sshKeys = new JCheckBoxMenuItem("Enable Host Key check",
-                                                      Settings.getEnableSshKeys());
+                                                      GUISettings.getEnableSshKeys());
     JCheckBoxMenuItem storePasswords = new JCheckBoxMenuItem("Store passwords (encrypted using internal password)",
-            Settings.getStorePasswords());
+            GUISettings.getStorePasswords());
 
     JCheckBoxMenuItem useNewIcons = new JCheckBoxMenuItem("Use Silk Icons",
-            Settings.getUseNewIcons());
+            GUISettings.getUseNewIcons());
     
     JCheckBoxMenuItem hideHidden = new JCheckBoxMenuItem("Hide local hidden files (Unix only)",
-            Settings.getHideLocalDotNames());
+            GUISettings.getHideLocalDotNames());
     
     JMenuItem clear = new JMenuItem("Clear Log");
 
@@ -172,7 +170,8 @@ public class AppMenuBar extends JMenuBar implements ActionListener
         ask.addActionListener(this);
         smbCon.addActionListener(this);
         clear.addActionListener(this);
-        sftpCon.addActionListener(this);
+        if(GUISettings.sftpAllowed)
+        	sftpCon.addActionListener(this);
         fadeMenu.addActionListener(this);
         askToDelete.addActionListener(this);
         smbThreads.addActionListener(this);
@@ -247,8 +246,10 @@ public class AppMenuBar extends JMenuBar implements ActionListener
         opt.add(security);
         opt.addSeparator();
         opt.add(ftp);
-        opt.add(smb);
-        opt.add(sftp);
+        if(GUISettings.smbAllowed)
+        	opt.add(smb);
+        if(GUISettings.sftpAllowed)
+        	opt.add(sftp);
         opt.addSeparator();
         opt.add(proxy);
         opt.add(opts);
@@ -356,7 +357,7 @@ public class AppMenuBar extends JMenuBar implements ActionListener
 
         try
         {
-            DataInput in = new DataInputStream(new BufferedInputStream(new FileInputStream(Settings.bookmarks)));
+            DataInput in = new DataInputStream(new BufferedInputStream(new FileInputStream(GUISettings.bookmarks)));
 
             while((data = in.readLine()) != null)
             {
@@ -443,18 +444,25 @@ public class AppMenuBar extends JMenuBar implements ActionListener
         file.removeAll();
 
         file.add(ftpCon);
-        file.add(sftpCon);
-        file.add(smbCon);
-        file.add(nfsCon);
-        file.add(webdavCon);
+        if(GUISettings.sftpAllowed)
+        	file.add(sftpCon);
+        if(GUISettings.smbAllowed)
+        	file.add(smbCon);
+        if(GUISettings.nfsAllowed)
+        	file.add(nfsCon);
+        if(GUISettings.webDavAllowed)
+        	file.add(webdavCon);
         file.addSeparator();
         file.add(close);
         file.addSeparator();
         file.addSeparator();
         file.add(localFtpCon);
-        file.add(localSftpCon);
-        file.add(localSmbCon);
-        file.add(localNfsCon);
+        if(GUISettings.sftpAllowed)
+        	file.add(localSftpCon);
+        if(GUISettings.smbAllowed)
+        	file.add(localSmbCon);
+        if(GUISettings.nfsAllowed)
+        	file.add(localNfsCon);
 
         //file.add(localWebdavCon); -> not yet
         file.addSeparator();
@@ -643,15 +651,15 @@ public class AppMenuBar extends JMenuBar implements ActionListener
 	        }
 	        else if(e.getSource() == readme)
 	        {
-	            show(Settings.readme);
+	            show(GUISettings.readme);
 	        }
 	        else if(e.getSource() == changelog)
 	        {
-	            show(Settings.changelog);
+	            show(GUISettings.changelog);
 	        }
 	        else if(e.getSource() == todo)
 	        {
-	            show(Settings.todo);
+	            show(GUISettings.todo);
 	        }
 	        else if(e.getSource() == shell)
 	        {
@@ -731,53 +739,53 @@ public class AppMenuBar extends JMenuBar implements ActionListener
 	        else if(e.getSource() == resuming)
 	        {
 	            boolean res = resuming.getState();
-	            Settings.enableResuming = res;
-	            Settings.setProperty("jftp.enableResuming", res);
-	            ask.setEnabled(Settings.enableResuming);
-	            Settings.save();
+	            GUISettings.enableResuming = res;
+	            GUISettings.setProperty("jftp.enableResuming", res);
+	            ask.setEnabled(GUISettings.enableResuming);
+	            GUISettings.save();
 	        }
 	        else if(e.getSource() == useNewIcons)
 	        {
 	            boolean res = useNewIcons.getState();
-	            Settings.setProperty("jftp.gui.look.newIcons", res);
-	            Settings.save();
+	            GUISettings.setProperty("jftp.gui.look.newIcons", res);
+	            GUISettings.save();
 	            
 	            JOptionPane.showMessageDialog(this, "Please restart JFtp to have the UI changed.");
 	        }
 	        else if(e.getSource() == hideHidden)
 	        {
 	            boolean res = hideHidden.getState();
-	            Settings.setProperty("jftp.hideHiddenDotNames", res);
-	            Settings.save();
+	            GUISettings.setProperty("jftp.hideHiddenDotNames", res);
+	            GUISettings.save();
 	            
 	            JFtp.localUpdate();
 	        }
 	        else if(e.getSource() == nl)
 	        {
 	            boolean res = nl.getState();
-	            Settings.showNewlineOption = res;
+	            GUISettings.showNewlineOption = res;
 	        }
 	        else if(e.getSource() == stdback)
 	        {
-	            Settings.setProperty("jftp.useBackground", stdback.getState());
-	            Settings.save();
+	            GUISettings.setProperty("jftp.useBackground", stdback.getState());
+	            GUISettings.save();
 	            JFtp.statusP.jftp.fireUpdate();
 	        }
 	        else if(e.getSource() == sshKeys)
 	        {
-	            Settings.setProperty("jftp.useSshKeyVerification",
+	            GUISettings.setProperty("jftp.useSshKeyVerification",
 	                                 sshKeys.getState());
-	            Settings.save();
+	            GUISettings.save();
 	            JFtp.statusP.jftp.fireUpdate();
 	        }
 	        else if(e.getSource() == rssDisabled)
 	        {
-	            Settings.setProperty("jftp.enableRSS", rssDisabled.getState());
-	            Settings.save();
+	            GUISettings.setProperty("jftp.enableRSS", rssDisabled.getState());
+	            GUISettings.save();
 	                                   
 	            JFtp.statusP.jftp.fireUpdate();
 	            
-	            String feed = Settings.getProperty("jftp.customRSSFeed");
+	            String feed = GUISettings.getProperty("jftp.customRSSFeed");
 	            if(feed != null && !feed.equals("")) feed = "http://slashdot.org/rss/slashdot.rss"; 
 	            
 	            switchRSS(feed);
@@ -811,29 +819,29 @@ public class AppMenuBar extends JMenuBar implements ActionListener
 	        }
 	        else if(e.getSource() == debug)
 	        {
-	            Settings.setProperty("jftp.enableDebug", debug.getState());
-	            Settings.save();
+	            GUISettings.setProperty("jftp.enableDebug", debug.getState());
+	            GUISettings.save();
 	        }
 	        else if(e.getSource() == disableLog)
 	        {
-	            Settings.setProperty("jftp.disableLog", disableLog.getState());
-	            Settings.save();
+	            GUISettings.setProperty("jftp.disableLog", disableLog.getState());
+	            GUISettings.save();
 	        }
 	        else if(e.getSource() == smbThreads)
 	        {
-	            Settings.setProperty("jftp.enableSmbMultiThreading",
+	            GUISettings.setProperty("jftp.enableSmbMultiThreading",
 	                                 smbThreads.getState());
-	            Settings.save();
+	            GUISettings.save();
 	        }
 	        else if(e.getSource() == sftpThreads)
 	        {
-	            Settings.setProperty("jftp.enableSftpMultiThreading",
+	            GUISettings.setProperty("jftp.enableSftpMultiThreading",
 	                                 sftpThreads.getState());
-	            Settings.save();
+	            GUISettings.save();
 	        }
 	        else if(e.getSource() == ask)
 	        {
-	            Settings.askToResume = ask.getState();
+	            GUISettings.askToResume = ask.getState();
 	        }
 	        else if(e.getSource() == http)
 	        {
@@ -843,14 +851,14 @@ public class AppMenuBar extends JMenuBar implements ActionListener
 	        }
 	        else if(e.getSource() == fadeMenu)
 	        {
-	            Settings.setProperty("jftp.gui.enableStatusAnimation",
+	            GUISettings.setProperty("jftp.gui.enableStatusAnimation",
 	                                 fadeMenu.getState());
-	            Settings.save();
+	            GUISettings.save();
 	        }
 	        else if(e.getSource() == askToDelete)
 	        {
-	            Settings.setProperty("jftp.gui.askToDelete", askToDelete.getState());
-	            Settings.save();
+	            GUISettings.setProperty("jftp.gui.askToDelete", askToDelete.getState());
+	            GUISettings.save();
 	        }
 	
 	        //***MY ADDITIONS (***how can I make this flexible enough to
@@ -922,22 +930,22 @@ public class AppMenuBar extends JMenuBar implements ActionListener
 	
 	                if(x == JOptionPane.YES_OPTION)
 	                {
-	                    File f = new File(Settings.login_def);
+	                    File f = new File(GUISettings.login_def);
 	                    f.delete();
 	
-	                    f = new File(Settings.login_def_sftp);
+	                    f = new File(GUISettings.login_def_sftp);
 	                    f.delete();
 	
-	                    f = new File(Settings.login_def_nfs);
+	                    f = new File(GUISettings.login_def_nfs);
 	                    f.delete();
 	
-	                    f = new File(Settings.login_def_smb);
+	                    f = new File(GUISettings.login_def_smb);
 	                    f.delete();
 	
-	                    f = new File(Settings.login);
+	                    f = new File(GUISettings.login);
 	                    f.delete();
 	
-	                    f = new File(Settings.last_cons);
+	                    f = new File(GUISettings.last_cons);
 	                    f.delete();
 	
 	                    Log.debug("Deleted old login data files.\n" +
@@ -945,8 +953,8 @@ public class AppMenuBar extends JMenuBar implements ActionListener
 	                }
 	            }
 	
-	            Settings.setProperty("jftp.security.storePasswords", state);
-	            Settings.save();
+	            GUISettings.setProperty("jftp.security.storePasswords", state);
+	            GUISettings.save();
 	        }
 	
 	        //*** END OF NEW LISTENERS
@@ -961,8 +969,8 @@ public class AppMenuBar extends JMenuBar implements ActionListener
 	                if(m[i].getName().equals(tmp))
 	                {
 	                    JFtp.statusP.jftp.setLookAndFeel(m[i].getClassName());
-	                    Settings.setProperty("jftp.gui.look", m[i].getClassName());
-	                    Settings.save();
+	                    GUISettings.setProperty("jftp.gui.look", m[i].getClassName());
+	                    GUISettings.save();
 	                }
 	            }
 	        }
@@ -974,8 +982,8 @@ public class AppMenuBar extends JMenuBar implements ActionListener
     }
     
     private void switchRSS(String url) {
-	    Settings.setProperty("jftp.customRSSFeed", url);
-		Settings.save();
+	    GUISettings.setProperty("jftp.customRSSFeed", url);
+		GUISettings.save();
 		
 		
 		if(JFtp.statusP.jftp.feeder == null) {
@@ -1015,11 +1023,14 @@ public class AppMenuBar extends JMenuBar implements ActionListener
         //*** set accelerators for the remote connection window
         ftpCon.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F,
                                                      ActionEvent.CTRL_MASK));
-        sftpCon.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
+        if(GUISettings.sftpAllowed)
+        	sftpCon.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
                                                       ActionEvent.CTRL_MASK));
-        smbCon.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L,
+        if(GUISettings.smbAllowed)
+        	smbCon.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L,
                                                      ActionEvent.CTRL_MASK));
-        nfsCon.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,
+        if(GUISettings.nfsAllowed)
+        	nfsCon.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,
                                                      ActionEvent.CTRL_MASK));
 
         //*** IMPORTANT NOTE: Adding an accelerator for disconnecting could
@@ -1049,9 +1060,12 @@ public class AppMenuBar extends JMenuBar implements ActionListener
         //*** as accelerators. So to quickly start an FTP connection in the local window,
         //*** the user can enter Alt+f+f, and Alt+f+s for SFTP,etc.
         localFtpCon.setMnemonic('F');
-        localSftpCon.setMnemonic('S');
-        localSmbCon.setMnemonic('L');
-        localNfsCon.setMnemonic('N');
+        if(GUISettings.sftpAllowed)
+        	localSftpCon.setMnemonic('S');
+        if(GUISettings.smbAllowed)
+        	localSmbCon.setMnemonic('L');
+        if(GUISettings.nfsAllowed)
+        	localNfsCon.setMnemonic('N');
 
         //localNfsCon.setMnemonic('N');
         closeLocalCon.setMnemonic('C');

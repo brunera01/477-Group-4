@@ -16,6 +16,7 @@
 package net.sf.jftp.Presentation.gui.base;
 
 import net.sf.jftp.*;
+
 import net.sf.jftp.Presentation.gui.framework.*;
 import net.sf.jftp.Domain.system.logging.Log;
 import net.sf.jftp.Domain.util.*;

@@ -16,7 +16,7 @@
 package net.sf.jftp.Presentation.gui.base.dir;
 
 import net.sf.jftp.*;
-import net.sf.jftp.Domain.config.*;
+
 import net.sf.jftp.Presentation.gui.base.DownloadList;
 import net.sf.jftp.Presentation.gui.framework.*;
 import net.sf.jftp.DataSource.net.*;

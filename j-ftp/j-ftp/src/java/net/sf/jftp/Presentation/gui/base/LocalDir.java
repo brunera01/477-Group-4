@@ -16,6 +16,7 @@
 package net.sf.jftp.Presentation.gui.base;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -53,7 +54,7 @@ import javax.swing.event.ListSelectionListener;
 
 import net.sf.jftp.JFtp;
 import net.sf.jftp.Domain.config.SaveSet;
-import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.Presentation.GUISettings;
 import net.sf.jftp.Presentation.gui.base.dir.DirCanvas;
 import net.sf.jftp.Presentation.gui.base.dir.DirCellRenderer;
 import net.sf.jftp.Presentation.gui.base.dir.DirComponent;
@@ -188,43 +189,43 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
         popupMenu.add(viewFile);
         popupMenu.add(props);
 
-        deleteButton = new HImageButton(Settings.deleteImage, deleteString,
+        deleteButton = new HImageButton(GUISettings.deleteImage, deleteString,
                                         "Delete selected", this);
         deleteButton.setToolTipText("Delete selected");
 
-        mkdirButton = new HImageButton(Settings.mkdirImage, mkdirString,
+        mkdirButton = new HImageButton(GUISettings.mkdirImage, mkdirString,
                                        "Create a new directory", this);
         mkdirButton.setToolTipText("Create directory");
 
-        refreshButton = new HImageButton(Settings.refreshImage, refreshString,
+        refreshButton = new HImageButton(GUISettings.refreshImage, refreshString,
                                          "Refresh current directory", this);
         refreshButton.setToolTipText("Refresh directory");    
-		refreshButton.setRolloverIcon(new ImageIcon(HImage.getImage(this, Settings.refreshImage2)));
+		refreshButton.setRolloverIcon(new ImageIcon(HImage.getImage(this, GUISettings.refreshImage2)));
 		refreshButton.setRolloverEnabled(true);
 
-        cdButton = new HImageButton(Settings.cdImage, cdString,
+        cdButton = new HImageButton(GUISettings.cdImage, cdString,
                                     "Change directory", this);
         cdButton.setToolTipText("Change directory");
 
-        uploadButton = new HImageButton(Settings.uploadImage, uploadString,
+        uploadButton = new HImageButton(GUISettings.uploadImage, uploadString,
                                         "Upload selected", this);
         uploadButton.setToolTipText("Upload selected");               
         //uploadButton.setBackground(new Color(192,192,192));
 
-        zipButton = new HImageButton(Settings.zipFileImage, zipString,
+        zipButton = new HImageButton(GUISettings.zipFileImage, zipString,
                                      "Add selected to new zip file", this);
         zipButton.setToolTipText("Create zip");
 
-        cpButton = new HImageButton(Settings.copyImage, cpString,
+        cpButton = new HImageButton(GUISettings.copyImage, cpString,
                                     "Copy selected files to another local dir",
                                     this);
         cpButton.setToolTipText("Local copy selected");
 
-        rnButton = new HImageButton(Settings.textFileImage, rnString,
+        rnButton = new HImageButton(GUISettings.textFileImage, rnString,
                                     "Rename selected file or directory", this);
         rnButton.setToolTipText("Rename selected");
 
-        cdUpButton = new HImageButton(Settings.cdUpImage, cdUpString,
+        cdUpButton = new HImageButton(GUISettings.cdUpImage, cdUpString,
                                       "Go to Parent Directory", this);
         cdUpButton.setToolTipText("Go to Parent Directory");
 
@@ -279,7 +280,7 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
         jlm = new DefaultListModel();
         jl = new JList(jlm);
         jl.setCellRenderer(new DirCellRenderer());
-        jl.setVisibleRowCount(Settings.visibleFileRows);
+        jl.setVisibleRowCount(GUISettings.visibleFileRows);
 
         // add this becaus we need to fetch only doubleclicks
         MouseListener mouseListener = new MouseAdapter()
@@ -388,7 +389,7 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
         
         TableUtils.tryToEnableRowSorting(table);
         
-        if(Settings.IS_JAVA_1_6) {
+        if(GUISettings.IS_JAVA_1_6) {
         	//sorter.setVisible(false);
         	buttonPanel.remove(sorter);
         }
@@ -455,7 +456,7 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
             {
                 pathChanged = false;
 
-                DirLister dir = new DirLister(con, sortMode, Settings.getHideLocalDotNames());
+                DirLister dir = new DirLister(con, sortMode, GUISettings.getHideLocalDotNames());
 
                 while(!dir.finished)
                 {
@@ -623,7 +624,7 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
             FtpConnection con = (FtpConnection) c;
 
             //con.setLocalPath(path);
-            SaveSet s = new SaveSet(Settings.login_def, con.getHost(),
+            SaveSet s = new SaveSet(GUISettings.login_def, con.getHost(),
                                     con.getUsername(), con.getPassword(),
                                     Integer.toString(con.getPort()),
                                     con.getCachedPWD(), con.getLocalPath());
@@ -666,7 +667,7 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
         {
             lock(false);
 
-            if(Settings.getAskToDelete())
+            if(GUISettings.getAskToDelete())
             {
                 if(!UITool.askToDelete(this))
                 {
@@ -875,11 +876,11 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
 
             if(sortMode.equals("Date"))
             {
-                Settings.showLocalDateNoSize = true;
+                GUISettings.showLocalDateNoSize = true;
             }
             else
             {
-                Settings.showLocalDateNoSize = false;
+                GUISettings.showLocalDateNoSize = false;
             }
 
             fresh();
@@ -963,21 +964,21 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
             public void run()
             { // --------------- local -------------------
 
-                boolean block = !Settings.getEnableMultiThreading();
+                boolean block = !GUISettings.getEnableMultiThreading();
 
                 if(!(con instanceof FtpConnection))
                 {
                     block = true;
                 }
 
-                if(block || Settings.getNoUploadMultiThreading())
+                if(block || GUISettings.getNoUploadMultiThreading())
                 {
                     lock(false);
                 }
 
                 transfer(tmpindex);
 
-                if(block || Settings.getNoUploadMultiThreading())
+                if(block || GUISettings.getNoUploadMultiThreading())
                 {
                     unlock(false);
                 }
@@ -1103,7 +1104,7 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
         if(con instanceof FilesystemConnection &&
                JFtp.remoteDir.getCon() instanceof FtpConnection)
         {
-            if((entry.getRawSize() < Settings.smallSizeUp) &&
+            if((entry.getRawSize() < GUISettings.smallSizeUp) &&
                    !entry.isDirectory())
             {
                 JFtp.remoteDir.getCon().upload(path + entry.file);
@@ -1308,7 +1309,7 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
             {
                 sorter.removeItem("Date");
                 dateEnabled = false;
-                Settings.showLocalDateNoSize = false;
+                GUISettings.showLocalDateNoSize = false;
                 UpdateDaemon.updateRemoteDirGUI();
             }
         }
@@ -1400,12 +1401,12 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
     public void showContentWindow(String url, DirEntry d)
     {
     	//------- popup -> run
-    	if(Settings.runtimeCommands > 0 && url.startsWith("popup-run@")) {
+    	if(GUISettings.runtimeCommands > 0 && url.startsWith("popup-run@")) {
     		String ext = url.substring(10);
     		
            	try {
            		System.out.println("xx: "+ext);
-        		if(!Settings.askToRun || (Settings.askToRun && UITool.askToRun(this))) UIUtils.runCommand(ext);
+        		if(!GUISettings.askToRun || (GUISettings.askToRun && UITool.askToRun(this))) UIUtils.runCommand(ext);
         	}
         	catch(Exception ex) {
         		Log.out("Could not launch file: "+ ext);
@@ -1440,9 +1441,9 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
                 */
 
                 
-                if(Settings.runtimeCommands > 1) {
+                if(GUISettings.runtimeCommands > 1) {
                 	try {
-                		if(!Settings.askToRun || (Settings.askToRun && UITool.askToRun(this))) {
+                		if(!GUISettings.askToRun || (GUISettings.askToRun && UITool.askToRun(this))) {
                 			UIUtils.runCommand(ext);
                         	return;
                 		}

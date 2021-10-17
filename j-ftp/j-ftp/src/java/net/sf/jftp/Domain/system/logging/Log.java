@@ -15,8 +15,7 @@
  */
 package net.sf.jftp.Domain.system.logging;
 
-import net.sf.jftp.Domain.config.Settings;
-
+import net.sf.jftp.Domain.DomainSettings;
 
 public class Log
 {
@@ -35,7 +34,7 @@ public class Log
 
     public static void debug(String msg)
     {
-        if(Settings.getDisableLog())
+        if(DomainSettings.getDisableLog())
         {
             return;
         }
@@ -44,12 +43,12 @@ public class Log
         logger.debug(msg);
         cache.append(msg + "\n");
 
-        if(!Settings.getEnableDebug()) System.out.println("> " + msg);
+        if(!DomainSettings.getEnableDebug()) System.out.println("> " + msg);
     }
 
     public static void debugRaw(String msg)
     {
-        if(Settings.getDisableLog())
+        if(DomainSettings.getDisableLog())
         {
             return;
         }
@@ -57,12 +56,12 @@ public class Log
         logger.debugRaw(msg);
         cache.append(msg);
 
-        if(Settings.getEnableDebug()) System.out.print(msg);
+        if(DomainSettings.getEnableDebug()) System.out.print(msg);
     }
 
     public static void out(String msg)
     {
-        if(!Settings.getEnableDebug())
+        if(!DomainSettings.getEnableDebug())
         {
             return;
         }

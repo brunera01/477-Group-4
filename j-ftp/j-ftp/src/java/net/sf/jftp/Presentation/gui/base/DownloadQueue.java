@@ -16,7 +16,7 @@
 package net.sf.jftp.Presentation.gui.base;
 
 import net.sf.jftp.*;
-import net.sf.jftp.Domain.config.*;
+import net.sf.jftp.Presentation.GUISettings;
 import net.sf.jftp.Presentation.gui.framework.*;
 import net.sf.jftp.DataSource.net.*;
 import net.sf.jftp.Domain.system.StringUtils;
@@ -51,22 +51,22 @@ public class DownloadQueue extends HPanel implements ActionListener
     private BasicConnection con;
 
     // private Vector listeners = new Vector();
-    private HImageButton start = new HImageButton(Settings.resumeImage,
+    private HImageButton start = new HImageButton(GUISettings.resumeImage,
                                                   "start",
                                                   "Start queue download...",
                                                   this);
-    private HImageButton stop = new HImageButton(Settings.pauseImage, "stop",
+    private HImageButton stop = new HImageButton(GUISettings.pauseImage, "stop",
                                                  "Stop queue download...", this);
-    private HImageButton save = new HImageButton(Settings.saveImage, "save",
+    private HImageButton save = new HImageButton(GUISettings.saveImage, "save",
                                                  "Save queue list to file...",
                                                  this);
-    private HImageButton load = new HImageButton(Settings.cdImage, "load",
+    private HImageButton load = new HImageButton(GUISettings.cdImage, "load",
                                                  "Load queue list from...", this);
-    private HImageButton up = new HImageButton(Settings.downloadImage, "up",
+    private HImageButton up = new HImageButton(GUISettings.downloadImage, "up",
                                                "Change order of queue", this);
-    private HImageButton down = new HImageButton(Settings.uploadImage, "down",
+    private HImageButton down = new HImageButton(GUISettings.uploadImage, "down",
                                                  "Change order of queue", this);
-    private HImageButton delete = new HImageButton(Settings.deleteImage, "del",
+    private HImageButton delete = new HImageButton(GUISettings.deleteImage, "del",
                                                    "Delete item in queue", this);
 
     //private HImageButton rotate = new HImageButton(Settings.cmdImage,"rotate","Toggle selected transfer...",this);

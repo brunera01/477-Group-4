@@ -16,6 +16,7 @@
 package net.sf.jftp.DataSource.net.wrappers;
 
 import java.io.BufferedInputStream;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,7 +32,7 @@ import jcifs.smb.NtlmPasswordAuthentication;
 import jcifs.smb.SmbAuthException;
 import jcifs.smb.SmbFile;
 import jcifs.smb.SmbFileOutputStream;
-import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.DataSource.DataSettings;
 import net.sf.jftp.DataSource.net.BasicConnection;
 import net.sf.jftp.DataSource.net.ConnectionListener;
 import net.sf.jftp.DataSource.net.DataConnection;
@@ -456,7 +457,7 @@ public class SmbConnection extends NtlmAuthenticator implements BasicConnection
 
     public int handleUpload(String f)
     {
-        if(Settings.getEnableSmbMultiThreading())
+        if(DataSettings.getEnableSmbMultiThreading())
         {
             SmbTransfer t = new SmbTransfer(getPWD(), getLocalPath(), f, user,
                                             pass, domain, listeners,
@@ -472,7 +473,7 @@ public class SmbConnection extends NtlmAuthenticator implements BasicConnection
 
     public int handleDownload(String f)
     {
-        if(Settings.getEnableSmbMultiThreading())
+        if(DataSettings.getEnableSmbMultiThreading())
         {
             SmbTransfer t = new SmbTransfer(getPWD(), getLocalPath(), f, user,
                                             pass, domain, listeners,
@@ -824,7 +825,7 @@ public class SmbConnection extends NtlmAuthenticator implements BasicConnection
             {
                 ConnectionListener listener = (ConnectionListener) listeners.elementAt(i);
 
-                if(shortProgress && Settings.shortProgress)
+                if(shortProgress && DataSettings.shortProgress)
                 {
                     if(type.startsWith(DataConnection.DFINISHED))
                     {

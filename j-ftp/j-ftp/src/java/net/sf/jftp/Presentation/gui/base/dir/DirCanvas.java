@@ -15,7 +15,9 @@
  */
 package net.sf.jftp.Presentation.gui.base.dir;
 
-import net.sf.jftp.Domain.config.Settings;
+
+
+import net.sf.jftp.Presentation.GUISettings;
 import net.sf.jftp.Presentation.gui.base.UITool;
 import net.sf.jftp.Presentation.gui.framework.*;
 import net.sf.jftp.Presentation.gui.tasks.PathChanger;
@@ -48,7 +50,7 @@ public class DirCanvas extends JPanel implements MouseListener
     {
         if(target.getType().equals("local") || target.getCon() instanceof FilesystemConnection)
         {
-            String tmp = UITool.getPathFromDialog(Settings.defaultWorkDir);
+            String tmp = UITool.getPathFromDialog(GUISettings.defaultWorkDir);
 
             if(tmp != null)
             {

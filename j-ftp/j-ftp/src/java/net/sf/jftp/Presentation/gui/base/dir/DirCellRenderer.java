@@ -15,8 +15,10 @@
  */
 package net.sf.jftp.Presentation.gui.base.dir;
 
-import net.sf.jftp.Domain.config.Settings;
+
+
 import net.sf.jftp.Domain.system.logging.Log;
+import net.sf.jftp.Presentation.GUISettings;
 import net.sf.jftp.Presentation.gui.base.LocalDir;
 import net.sf.jftp.Presentation.gui.base.RemoteDir;
 import net.sf.jftp.Presentation.gui.framework.GUIDefaults;
@@ -35,8 +37,8 @@ import javax.swing.*;
 // class DirCellRenderer extends JLabel implements ListCellRenderer {
 public class DirCellRenderer extends DefaultListCellRenderer
 {
-    final static ImageIcon longIcon = new ImageIcon(Settings.dirImage);
-    final static ImageIcon shortIcon = new ImageIcon(Settings.fileImage);
+    final static ImageIcon longIcon = new ImageIcon(GUISettings.dirImage);
+    final static ImageIcon shortIcon = new ImageIcon(GUISettings.fileImage);
     private Object value;
 
     public DirCellRenderer()
@@ -76,7 +78,7 @@ public class DirCellRenderer extends DefaultListCellRenderer
         {
             String size = "";
 
-            if(Settings.showFileSize)
+            if(GUISettings.showFileSize)
             {
                 size = ((DirEntry) list.getModel().getElementAt(index)).getFileSize();
             }
@@ -87,7 +89,7 @@ public class DirCellRenderer extends DefaultListCellRenderer
 
             String date = "";
 
-            if(Settings.showDateNoSize &&
+            if(GUISettings.showDateNoSize &&
                    (((DirEntry) list.getModel().getElementAt(index)).who instanceof RemoteDir))
             {
                 size = ((DirEntry) list.getModel().getElementAt(index)).getDate();
@@ -99,7 +101,7 @@ public class DirCellRenderer extends DefaultListCellRenderer
                     size += " ";
                 }
             }
-            else if(Settings.showLocalDateNoSize &&
+            else if(GUISettings.showLocalDateNoSize &&
                         (((DirEntry) list.getModel().getElementAt(index)).who instanceof LocalDir))
             {
                 size = ((DirEntry) list.getModel().getElementAt(index)).getDate();

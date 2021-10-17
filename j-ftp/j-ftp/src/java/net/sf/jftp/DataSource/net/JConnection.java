@@ -16,6 +16,7 @@
 package net.sf.jftp.DataSource.net;
 
 import java.io.BufferedOutputStream;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -23,7 +24,7 @@ import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.Socket;
 
-import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.DataSource.DataSettings;
 import net.sf.jftp.Domain.system.logging.Log;
 
 
@@ -34,7 +35,7 @@ import net.sf.jftp.Domain.system.logging.Log;
  */
 public class JConnection implements Runnable
 {
-    private int timeout = Settings.connectionTimeout;
+    private int timeout = DataSettings.connectionTimeout;
     private String host;
     private int port;
     private PrintStream out;
@@ -135,9 +136,9 @@ public class JConnection implements Runnable
 
             //if(time > 0) s.setSoTimeout(time);
             out = new PrintStream(new BufferedOutputStream(s.getOutputStream(),
-                                                           Settings.bufferSize));
+                                                           DataSettings.bufferSize));
             in = new BufferedReader(new InputStreamReader(s.getInputStream()),
-                                    Settings.bufferSize);
+                                    DataSettings.bufferSize);
             isOk = true;
 
             // }

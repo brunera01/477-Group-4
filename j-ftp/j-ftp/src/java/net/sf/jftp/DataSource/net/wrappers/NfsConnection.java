@@ -16,6 +16,7 @@
 package net.sf.jftp.DataSource.net.wrappers;
 
 import java.io.BufferedInputStream;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,7 +27,7 @@ import java.io.StreamTokenizer;
 import java.util.Date;
 import java.util.Vector;
 
-import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.DataSource.DataSettings;
 import net.sf.jftp.DataSource.net.BasicConnection;
 import net.sf.jftp.DataSource.net.ConnectionListener;
 import net.sf.jftp.DataSource.net.DataConnection;
@@ -802,7 +803,7 @@ public class NfsConnection implements BasicConnection
             {
                 ConnectionListener listener = (ConnectionListener) listeners.elementAt(i);
 
-                if(shortProgress && Settings.shortProgress)
+                if(shortProgress && DataSettings.shortProgress)
                 {
                     if(type.startsWith(DataConnection.DFINISHED))
                     {

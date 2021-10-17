@@ -16,7 +16,7 @@
 package net.sf.jftp.DataSource.tools;
 
 import net.sf.jftp.JFtp;
-import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.DataSource.DataSettings;
 import net.sf.jftp.Presentation.gui.*;
 import net.sf.jftp.Presentation.gui.base.StatusCanvas;
 import net.sf.jftp.Presentation.gui.framework.*;
@@ -36,12 +36,12 @@ import javax.swing.*;
 
 public class RSSFeeder extends JPanel implements Runnable, ActionListener
 {
-    public static String urlstring = Settings.getRSSFeed();
+    public static String urlstring = DataSettings.getRSSFeed();
     Thread runner;
     URL url;
     RSSParser parser;
     StatusCanvas can = new StatusCanvas();
-    HImageButton next = new HImageButton(Settings.nextRSSImage, "nextRSS",
+    HImageButton next = new HImageButton(DataSettings.nextRSSImage, "nextRSS",
                                          "Display next RSS news item", this);
     boolean header = false;
     boolean breakHeader = false;

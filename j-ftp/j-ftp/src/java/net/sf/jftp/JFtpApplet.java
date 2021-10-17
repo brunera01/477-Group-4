@@ -1,10 +1,9 @@
 package net.sf.jftp;
 
 import java.applet.Applet;
+
 import java.security.AccessController;
 import java.security.PrivilegedAction;
-
-import net.sf.jftp.Domain.config.Settings;
 
 
 public class JFtpApplet extends Applet
@@ -15,7 +14,7 @@ public class JFtpApplet extends Applet
             {
                 public Object run()
                 {
-                	Settings.isStandalone = false;
+                	GeneralSettings.isStandalone = false;
                     JFtp.main(new String[0]);
 
                     return new Object();

@@ -16,7 +16,7 @@
 package net.sf.jftp.DataSource.tools;
 
 import net.sf.jftp.*;
-import net.sf.jftp.Domain.config.*;
+
 import net.sf.jftp.Presentation.gui.framework.*;
 import net.sf.jftp.DataSource.net.*;
 import net.sf.jftp.Domain.system.LocalIO;

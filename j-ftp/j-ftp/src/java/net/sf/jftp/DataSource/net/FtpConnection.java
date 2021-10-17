@@ -16,6 +16,7 @@
 package net.sf.jftp.DataSource.net;
 
 import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,9 +36,9 @@ import java.util.Vector;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import net.sf.jftp.DataSource.DataSettings;
 import net.sf.jftp.Domain.config.LoadSet;
 import net.sf.jftp.Domain.config.SaveSet;
-import net.sf.jftp.Domain.config.Settings;
 import net.sf.jftp.Domain.system.StringUtils;
 import net.sf.jftp.Domain.system.logging.Log;
 
@@ -94,7 +95,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 	private boolean msg = true;
 	private boolean ok = true;
 	private String pwd = "";
-	private String initCWD = Settings.defaultDir;
+	private String initCWD = DataSettings.defaultDir;
 	private String[] loginAck = new String[] { FTP331_USER_OK_NEED_PASSWORD, FTP230_LOGGED_IN };
 	private String osType = "";
 	private String dataType;
@@ -280,7 +281,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 			//if(getOsType().indexOf("MVS") < 0) 
 			binary();
 
-			if(initCWD.trim().equals(Settings.defaultDir) ||
+			if(initCWD.trim().equals(DataSettings.defaultDir) ||
 					!chdirNoRefresh(initCWD))
 			{
 				//System.out.println("default dir...");
@@ -295,7 +296,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 				updatePWD();
 			}
 
-			if(Settings.ftpKeepAlive) {
+			if(DataSettings.ftpKeepAlive) {
 				keepAliveThread = new FtpKeepAliveThread(this);
 			}
 
@@ -312,14 +313,14 @@ public class FtpConnection implements BasicConnection, FtpConstants
 			{
 				//just get the first item (somehow it knows first is the
 				//FTP list command)
-				advSettings = LoadSet.loadSet(Settings.adv_settings);
+				advSettings = LoadSet.loadSet(DataSettings.adv_settings);
 
 				//*** IF FILE NOT FOUND, CREATE IT AND SET IT TO LIST_DEFAULT
 				if(advSettings == null)
 				{
 					LIST = LIST_DEFAULT;
 
-					new SaveSet(Settings.adv_settings, LIST);
+					new SaveSet(DataSettings.adv_settings, LIST);
 				}
 				else
 				{
@@ -1154,7 +1155,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 	 */
 	public int handleDownload(String file)
 	{
-		if(Settings.getEnableMultiThreading())
+		if(DataSettings.getEnableMultiThreading())
 		{
 			Log.out("spawning new thread for this download.");
 
@@ -1207,7 +1208,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 
 			stat = rawDownload(file);
 
-			if(Settings.enableFtpDelays) {
+			if(DataSettings.enableFtpDelays) {
 				try
 				{
 					Thread.sleep(100);
@@ -1217,7 +1218,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 			fireActionFinished(this);
 		}
 
-		if(Settings.enableFtpDelays) {
+		if(DataSettings.enableFtpDelays) {
 			try
 			{
 				Thread.sleep(400);
@@ -1301,7 +1302,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 			//System.out.println("path: "+path);
 			boolean resume = false;
 
-			if(f.exists() && Settings.enableResuming)
+			if(f.exists() && DataSettings.enableResuming)
 			{
 				jcon.send(REST + " " + f.length());
 
@@ -1476,8 +1477,8 @@ public class FtpConnection implements BasicConnection, FtpConstants
 	 */
 	public int handleUpload(String file, String realName)
 	{
-		if(Settings.getEnableMultiThreading() &&
-				(!Settings.getNoUploadMultiThreading()))
+		if(DataSettings.getEnableMultiThreading() &&
+				(!DataSettings.getNoUploadMultiThreading()))
 		{
 			Log.out("spawning new thread for this upload.");
 
@@ -1502,7 +1503,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 		}
 		else
 		{
-			if(Settings.getNoUploadMultiThreading())
+			if(DataSettings.getNoUploadMultiThreading())
 			{
 				Log.out("upload multithreading is disabled.");
 			}
@@ -1656,7 +1657,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 			boolean resume = false;
 			String size = "0";
 
-			if(Settings.enableUploadResuming && (in == null))
+			if(DataSettings.enableUploadResuming && (in == null))
 			{
 				list();
 
@@ -1701,7 +1702,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 					}
 					else if(f.exists() && Integer.parseInt(size) > 0)
 					{
-						if(!Settings.noUploadResumingQuestion) {
+						if(!DataSettings.noUploadResumingQuestion) {
 							if(JOptionPane.showConfirmDialog(new JLabel(), "A file smaller than the one to be uploaded already exists on the server,\n do you want to resume the upload?", "Resume upload?", JOptionPane.YES_NO_OPTION)
 									!= JOptionPane.OK_OPTION) {
 								resume = false;
@@ -1720,7 +1721,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 			//binary();
 			p = negotiatePort();
 
-			if(resume && Settings.enableUploadResuming)
+			if(resume && DataSettings.enableUploadResuming)
 			{
 				jcon.send(REST + " " + size);
 
@@ -1799,7 +1800,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 		String remoteDir = getCachedPWD() + single; //StringUtils.removeStart(dir,path);
 		String oldDir = getCachedPWD();
 
-		if(Settings.safeMode)
+		if(DataSettings.safeMode)
 		{
 			noop();
 		}
@@ -1811,7 +1812,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 			return MKDIR_FAILED;
 		}
 
-		if(Settings.safeMode)
+		if(DataSettings.safeMode)
 		{
 			noop();
 		}
@@ -2263,7 +2264,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 	{
 		String tmp = "";
 
-		if(Settings.getFtpPasvMode())
+		if(DataSettings.getFtpPasvMode())
 		{
 			jcon.send(PASV);
 
@@ -2385,7 +2386,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 
 	private boolean chdirWork(String p)
 	{
-		if(Settings.safeMode)
+		if(DataSettings.safeMode)
 		{
 			noop();
 		}
@@ -2979,7 +2980,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 			{
 				ConnectionListener listener = (ConnectionListener) listeners.elementAt(i);
 
-				if(shortProgress && Settings.shortProgress)
+				if(shortProgress && DataSettings.shortProgress)
 				{
 					if(type.startsWith(DataConnection.DFINISHED))
 					{

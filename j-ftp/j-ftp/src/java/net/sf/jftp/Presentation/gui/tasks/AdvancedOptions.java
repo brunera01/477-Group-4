@@ -16,11 +16,12 @@
 package net.sf.jftp.Presentation.gui.tasks;
 
 import net.sf.jftp.*;
-
+import net.sf.jftp.Presentation.GUISettings;
 //***
-import net.sf.jftp.Domain.config.*;
 import net.sf.jftp.Presentation.gui.framework.*;
 import net.sf.jftp.DataSource.net.*;
+import net.sf.jftp.Domain.config.LoadSet;
+import net.sf.jftp.Domain.config.SaveSet;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -83,15 +84,15 @@ public class AdvancedOptions extends HPanel implements ActionListener
         {
             //AND NEED TO CHECK IF FILE DOESN'T EXIST (if not, create it
             //and set the file and settings to the default
-            if(LoadSet.loadSet(Settings.adv_settings) != null)
+            if(LoadSet.loadSet(GUISettings.adv_settings) != null)
             {
-                listOptionText = LoadSet.loadSet(Settings.adv_settings)[0];
+                listOptionText = LoadSet.loadSet(GUISettings.adv_settings)[0];
             }
             else
             {
                 listOptionText = FtpConnection.LIST_DEFAULT;
 
-                SaveSet s = new SaveSet(Settings.adv_settings,
+                SaveSet s = new SaveSet(GUISettings.adv_settings,
                                         FtpConnection.LIST_DEFAULT);
             }
         }
@@ -144,7 +145,7 @@ public class AdvancedOptions extends HPanel implements ActionListener
 
             //text.setText("LIST command set and saved");
             //statusText.setText("LIST command set and saved.");
-            SaveSet s = new SaveSet(Settings.adv_settings,
+            SaveSet s = new SaveSet(GUISettings.adv_settings,
                                     listCommand.getText().trim());
 
             //***

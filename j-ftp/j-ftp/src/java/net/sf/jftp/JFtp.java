@@ -16,6 +16,7 @@
 package net.sf.jftp;
 
 import java.awt.BorderLayout;
+
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -68,7 +69,6 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 
-import net.sf.jftp.Domain.config.Settings;
 import net.sf.jftp.Presentation.gui.base.AppMenuBar;
 import net.sf.jftp.Presentation.gui.base.DownloadList;
 import net.sf.jftp.Presentation.gui.base.DownloadQueue;
@@ -189,14 +189,14 @@ public class JFtp extends JPanel implements WindowListener, ComponentListener,
         statusP = new StatusPanel(this);
         add("North", statusP);
 
-        localDir = (Dir) new LocalDir(Settings.defaultWorkDir);
+        localDir = (Dir) new LocalDir(GeneralSettings.defaultWorkDir);
         localDir.setDownloadList(dList);
 
         remoteDir = (Dir) new RemoteDir();
         remoteDir.setDownloadList(dList);
         //desktop.setDropTarget(this.dropTarget);
 
-        Dimension d = Settings.getWindowSize();
+        Dimension d = GeneralSettings.getWindowSize();
         setPreferredSize(d);
         setSize(d);
 
@@ -259,14 +259,14 @@ public class JFtp extends JPanel implements WindowListener, ComponentListener,
 
         j3 = new JInternalFrame("Log", true, false, true, true);
 
-        HImageButton clearButton = new HImageButton(Settings.clearLogImage, "clearLog", "Clear Log", new ActionListener() {
+        HImageButton clearButton = new HImageButton(GeneralSettings.clearLogImage, "clearLog", "Clear Log", new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {				
 				JFtp.clearLog();
 			}
 		});
-        HImageButton lockButton = new HImageButton(Settings.scrollLockImage, "scrollLock", "Toggle Scroll Lock", new ActionListener() {
+        HImageButton lockButton = new HImageButton(GeneralSettings.scrollLockImage, "scrollLock", "Toggle Scroll Lock", new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -309,7 +309,7 @@ public class JFtp extends JPanel implements WindowListener, ComponentListener,
         bottomBar.setFloatable(false);
         bottomBar.add(statusP.status, FlowLayout.LEFT);
 
-        if(Settings.getEnableRSS())
+        if(GeneralSettings.getEnableRSS())
         {
         	addRSS();
         }
@@ -393,7 +393,7 @@ public class JFtp extends JPanel implements WindowListener, ComponentListener,
     }
     
     private void restoreInternalPositions() {
-    	if(Settings.getProperty("jftp.iframes.resize").equals("false")) {
+    	if(GeneralSettings.getProperty("jftp.iframes.resize").equals("false")) {
     		
     	}
     	else {
@@ -406,10 +406,10 @@ public class JFtp extends JPanel implements WindowListener, ComponentListener,
     }
     
     private void restoreInternalPosition(JInternalFrame f, String desc) {
-        String x = Settings.getProperty("jftp.iframes."+desc+".x");
-        String y = Settings.getProperty("jftp.iframes."+desc+".y");
-        String w = Settings.getProperty("jftp.iframes."+desc+".width");
-        String h = Settings.getProperty("jftp.iframes."+desc+".height");
+        String x = GeneralSettings.getProperty("jftp.iframes."+desc+".x");
+        String y = GeneralSettings.getProperty("jftp.iframes."+desc+".y");
+        String w = GeneralSettings.getProperty("jftp.iframes."+desc+".width");
+        String h = GeneralSettings.getProperty("jftp.iframes."+desc+".height");
         
         if(x.indexOf(".") >= 0) x = x.substring(0, x.indexOf("."));
         if(y.indexOf(".") >= 0) y = y.substring(0, y.indexOf("."));
@@ -427,38 +427,38 @@ public class JFtp extends JPanel implements WindowListener, ComponentListener,
     private void saveInternalPosition(JInternalFrame f, String desc) {
     	Point p = f.getLocation();
    
-        Settings.setProperty("jftp.iframes."+desc+".x", ""+p.getX());
-        Settings.setProperty("jftp.iframes."+desc+".y", ""+p.getY());
-        Settings.setProperty("jftp.iframes."+desc+".width", f.getWidth());
-        Settings.setProperty("jftp.iframes."+desc+".height", f.getHeight());
+        GeneralSettings.setProperty("jftp.iframes."+desc+".x", ""+p.getX());
+        GeneralSettings.setProperty("jftp.iframes."+desc+".y", ""+p.getY());
+        GeneralSettings.setProperty("jftp.iframes."+desc+".width", f.getWidth());
+        GeneralSettings.setProperty("jftp.iframes."+desc+".height", f.getHeight());
     }
     
     public void windowClosing(WindowEvent e)
     {
     	saveInternalPositions();
     	
-        Settings.setProperty("jftp.window.width", this.getWidth());
-        Settings.setProperty("jftp.window.height", this.getHeight());
+        GeneralSettings.setProperty("jftp.window.width", this.getWidth());
+        GeneralSettings.setProperty("jftp.window.height", this.getHeight());
 
         if(!mainUsed)
         {
-            Settings.setProperty("jftp.window.x",
+            GeneralSettings.setProperty("jftp.window.x",
                                  (int) this.getLocationOnScreen().getX());
-            Settings.setProperty("jftp.window.y",
+            GeneralSettings.setProperty("jftp.window.y",
                                  (int) this.getLocationOnScreen().getY());
         }
         else
         {
-            Settings.setProperty("jftp.window.x",
+            GeneralSettings.setProperty("jftp.window.x",
                                  (int) mainFrame.getLocationOnScreen().getX());
-            Settings.setProperty("jftp.window.y",
+            GeneralSettings.setProperty("jftp.window.y",
                                  (int) mainFrame.getLocationOnScreen().getY());
         }
 
-        Settings.save();
+        GeneralSettings.save();
         safeDisconnect();
 
-        if(Settings.isStandalone)
+        if(GeneralSettings.isStandalone)
         {
             System.exit(0);
         }
@@ -551,13 +551,13 @@ public class JFtp extends JPanel implements WindowListener, ComponentListener,
     {
         try
         {
-            background = new HDesktopBackground(Settings.background, null);
+            background = new HDesktopBackground(GeneralSettings.background, null);
             background.setBounds(0, 0, getSize().width, getSize().height);
             desktop.add(background, new Integer(Integer.MIN_VALUE));
         }
         catch(Exception ex)
         {
-            Log.out(Settings.background + " missing, no background image used");
+            Log.out(GeneralSettings.background + " missing, no background image used");
         }
     }
 
@@ -588,14 +588,14 @@ public class JFtp extends JPanel implements WindowListener, ComponentListener,
     		long start = System.currentTimeMillis();
 
     		Log.out("starting up jftp...");
-    		System.setProperty("sshtools.logfile", Settings.appHomeDir + "log4.txt");
+    		System.setProperty("sshtools.logfile", GeneralSettings.appHomeDir + "log4.txt");
 
-    		Settings.enableResuming = true;
-    		Settings.enableUploadResuming = true;
-    		Settings.noUploadResumingQuestion = false;
+    		GeneralSettings.enableResuming = true;
+    		GeneralSettings.enableUploadResuming = true;
+    		GeneralSettings.noUploadResumingQuestion = false;
 
-    		setSocksProxyOptions(Settings.getSocksProxyHost(),
-    				Settings.getSocksProxyPort());
+    		setSocksProxyOptions(GeneralSettings.getSocksProxyHost(),
+    				GeneralSettings.getSocksProxyPort());
 
     		JFtp jftp = new JFtp(true);
     		
@@ -659,12 +659,12 @@ public class JFtp extends JPanel implements WindowListener, ComponentListener,
 				getClass().getClassLoader());
 
 		//boolean lookSet = false;
-		String tmp = Settings.getLookAndFeel();
+		String tmp = GeneralSettings.getLookAndFeel();
 
 		//UIManager.installLookAndFeel("Metouia", "net.sourceforge.mlf.metouia.MetouiaLookAndFeel");
 		if(tmp != null)
 		{
-			setLookAndFeel(Settings.getLookAndFeel());
+			setLookAndFeel(GeneralSettings.getLookAndFeel());
 		}
 		else
 		{
@@ -682,8 +682,8 @@ public class JFtp extends JPanel implements WindowListener, ComponentListener,
 		 * Don't try to add the Kunststoff look and feel if it has
 		 * already been added.
 		 */
-		if((Settings.getLookAndFeel() == null) ||
-				!Settings.getLookAndFeel().equals("com.incors.plaf.kunststoff.KunststoffLookAndFeel"))
+		if((GeneralSettings.getLookAndFeel() == null) ||
+				!GeneralSettings.getLookAndFeel().equals("com.incors.plaf.kunststoff.KunststoffLookAndFeel"))
 		{
 			/*
 			 * Somehow even though UIManager.installLookAndFeel throws a
@@ -709,8 +709,8 @@ public class JFtp extends JPanel implements WindowListener, ComponentListener,
 		 * Don't try to add the Metouia look and feel if it has
 		 * already been added.
 		 */
-		if((Settings.getLookAndFeel() == null) ||
-				!Settings.getLookAndFeel().equals("net.sourceforge.mlf.metouia.MetouiaLookAndFeel"))
+		if((GeneralSettings.getLookAndFeel() == null) ||
+				!GeneralSettings.getLookAndFeel().equals("net.sourceforge.mlf.metouia.MetouiaLookAndFeel"))
 		{
 			/*
 			 * Somehow even though UIManager.installLookAndFeel throws a
@@ -733,14 +733,14 @@ public class JFtp extends JPanel implements WindowListener, ComponentListener,
 		}
 
 		mainFrame = new JFrame();
-		mainFrame.setLocation(Settings.getWindowLocation());
+		mainFrame.setLocation(GeneralSettings.getWindowLocation());
 
-		mainFrame.setTitle(Settings.title + " - Version " + getVersion());
+		mainFrame.setTitle(GeneralSettings.title + " - Version " + getVersion());
 
-		mainFrame.setResizable(Settings.resize);
+		mainFrame.setResizable(GeneralSettings.resize);
 		mainFrame.addWindowListener(this);
 
-		Image icon = HImage.getImage(this, Settings.iconImage);
+		Image icon = HImage.getImage(this, GeneralSettings.iconImage);
 		mainFrame.setIconImage(icon);
 		mainFrame.setFont(GUIDefaults.font);
 
@@ -763,7 +763,7 @@ public class JFtp extends JPanel implements WindowListener, ComponentListener,
             if((msg.indexOf("NOOP") > 0) || (msg.indexOf("Type") > 0) ||
                    (msg.indexOf("MODE") > 0) || (msg.indexOf("Passive") > 0))
             {
-                if(Settings.hideStatus)
+                if(GeneralSettings.hideStatus)
                 {
                     return;
                 }
@@ -784,7 +784,7 @@ public class JFtp extends JPanel implements WindowListener, ComponentListener,
 
         long time = System.currentTimeMillis();
 
-        if(((time - oldtime) < Settings.uiRefresh))
+        if(((time - oldtime) < GeneralSettings.uiRefresh))
         {
             UpdateDaemon.updateLog();
 
@@ -889,11 +889,11 @@ public class JFtp extends JPanel implements WindowListener, ComponentListener,
     {
         try
         {
-            URL u = ClassLoader.getSystemResource(Settings.readme);
+            URL u = ClassLoader.getSystemResource(GeneralSettings.readme);
 
             if(u == null)
             {
-                u = HImage.class.getResource("/" + Settings.readme);
+                u = HImage.class.getResource("/" + GeneralSettings.readme);
             }
 
             DataInputStream i = new DataInputStream(u.openStream());

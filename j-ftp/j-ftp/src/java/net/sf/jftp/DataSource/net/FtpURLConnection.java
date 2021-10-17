@@ -16,12 +16,13 @@
 package net.sf.jftp.DataSource.net;
 
 import java.io.IOException;
+
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
-import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.DataSource.DataSettings;
 import net.sf.jftp.Domain.system.logging.Log;
 
 
@@ -40,7 +41,7 @@ public class FtpURLConnection extends URLConnection
         super(u);
 
         int port = u.getPort() > 0 ? u.getPort() : 21;
-        connection = new FtpConnection(u.getHost(), port, Settings.defaultDir);
+        connection = new FtpConnection(u.getHost(), port, DataSettings.defaultDir);
 
         String userInfo = u.getUserInfo();
 

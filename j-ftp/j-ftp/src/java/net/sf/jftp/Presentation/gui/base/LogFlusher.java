@@ -1,7 +1,8 @@
 package net.sf.jftp.Presentation.gui.base;
 
 import net.sf.jftp.JFtp;
-import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.Presentation.GUISettings;
+
 
 
 public class LogFlusher implements Runnable
@@ -12,7 +13,7 @@ public class LogFlusher implements Runnable
     {
         runner = new Thread(this);
 
-        if(Settings.useLogFlusher)
+        if(GUISettings.useLogFlusher)
         {
             runner.start();
         }
@@ -24,7 +25,7 @@ public class LogFlusher implements Runnable
         {
             try
             {
-                runner.sleep(Settings.logFlushInterval);
+                runner.sleep(GUISettings.logFlushInterval);
             }
             catch(InterruptedException ex)
             {

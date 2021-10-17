@@ -16,7 +16,7 @@
 package net.sf.jftp.Presentation.gui.base.dir;
 
 import net.sf.jftp.*;
-import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.Presentation.GUISettings;
 import net.sf.jftp.Presentation.gui.framework.*;
 import net.sf.jftp.DataSource.net.*;
 import net.sf.jftp.Domain.system.LocalIO;
@@ -102,7 +102,7 @@ public class DirLister implements ActionListener
     {
         try
         {
-            String outfile = Settings.ls_out;
+            String outfile = GUISettings.ls_out;
             
             //BasicConnection con = JFtp.getControlConnection();
             con.list();

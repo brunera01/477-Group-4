@@ -15,9 +15,12 @@
  */
 package net.sf.jftp.Presentation.gui.tasks;
 
-import net.sf.jftp.Domain.config.*;
+
+import net.sf.jftp.Presentation.GUISettings;
 import net.sf.jftp.Presentation.gui.base.FtpHost;
 import net.sf.jftp.Presentation.gui.framework.*;
+import net.sf.jftp.Domain.config.LoadSet;
+import net.sf.jftp.Domain.config.SaveSet;
 import net.sf.jftp.Domain.system.StringUtils;
 import net.sf.jftp.Domain.util.*;
 
@@ -313,7 +316,7 @@ public class HostList extends JDialog
 
         while(i >= 0)
         {
-            String filename = Settings.login.concat(String.valueOf(i));
+            String filename = GUISettings.login.concat(String.valueOf(i));
             String[] host_info = LoadSet.loadSet(filename);
 
             if((host_info == null) || (host_info.length == 1))
@@ -386,7 +389,7 @@ public class HostList extends JDialog
 
         while(true)
         {
-            File f = new File(Settings.login.concat(String.valueOf(i)));
+            File f = new File(GUISettings.login.concat(String.valueOf(i)));
 
             if(f.exists())
             {
@@ -409,7 +412,7 @@ public class HostList extends JDialog
             String ptmp = StringUtils.cut(ftphost.password, " ");
             String ntmp = StringUtils.cut(ftphost.name, " ");
             String ttmp = StringUtils.cut(ftphost.port, " ");
-            SaveSet s = new SaveSet(Settings.login.concat(String.valueOf(i)),
+            SaveSet s = new SaveSet(GUISettings.login.concat(String.valueOf(i)),
                                     htmp, utmp, ptmp, ntmp, ttmp);
         }
 

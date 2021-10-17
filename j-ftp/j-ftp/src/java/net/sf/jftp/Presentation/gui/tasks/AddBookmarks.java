@@ -18,7 +18,7 @@
 package net.sf.jftp.Presentation.gui.tasks;
 
 import net.sf.jftp.*;
-import net.sf.jftp.Domain.config.*;
+import net.sf.jftp.Presentation.GUISettings;
 import net.sf.jftp.Presentation.gui.framework.*;
 import net.sf.jftp.DataSource.net.*;
 import net.sf.jftp.DataSource.net.wrappers.StartConnection;
@@ -309,7 +309,7 @@ public class AddBookmarks extends HFrame implements ActionListener,
             FileOutputStream fos;
             PrintStream out;
 
-            fos = new FileOutputStream(Settings.bookmarks, true);
+            fos = new FileOutputStream(GUISettings.bookmarks, true);
             out = new PrintStream(fos);
 
             //commented out, just for now

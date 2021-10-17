@@ -1,6 +1,6 @@
 package net.sf.jftp.DataSource.net;
 
-import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.DataSource.DataSettings;
 
 public class FtpKeepAliveThread implements Runnable {
 
@@ -17,7 +17,7 @@ public class FtpKeepAliveThread implements Runnable {
 	public void run() {
 		while(conn.isConnected()) {
 			try {
-				Thread.sleep(Settings.ftpKeepAliveInterval);
+				Thread.sleep(DataSettings.ftpKeepAliveInterval);
 				
 				conn.noop();
 			}

@@ -16,7 +16,7 @@
 package net.sf.jftp.Presentation.gui.framework;
 
 import net.sf.jftp.*;
-import net.sf.jftp.Domain.config.*;
+import net.sf.jftp.Presentation.GUISettings;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -45,7 +45,7 @@ public class HDesktopBackground extends JPanel implements MouseListener,
 
     public void paintComponent(Graphics g)
     {
-        if(!Settings.getUseBackground())
+        if(!GUISettings.getUseBackground())
         {
             return;
         }

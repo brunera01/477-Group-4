@@ -16,6 +16,7 @@
 package net.sf.jftp.Presentation.gui.base.dir;
 
 import java.awt.Image;
+
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.util.Date;
@@ -24,7 +25,7 @@ import java.util.Hashtable;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.Presentation.GUISettings;
 import net.sf.jftp.Presentation.gui.framework.HImage;
 import net.sf.jftp.DataSource.net.FtpConnection;
 
@@ -40,40 +41,40 @@ public class DirEntry
                                        {
                                            new String[]
                                            {
-                                               Settings.textFileImage, ".txt",
+                                               GUISettings.textFileImage, ".txt",
                                                ".doc", ".rtf"
                                            },
                                            new String[]
                                            {
-                                               Settings.htmlFileImage, ".htm",
+                                               GUISettings.htmlFileImage, ".htm",
                                                ".html"
                                            },
                                            new String[]
                                            {
-                                               Settings.zipFileImage, ".arj",
+                                               GUISettings.zipFileImage, ".arj",
                                                ".bz", ".bz2", ".deb", ".jar",
                                                ".gz", ".rav", ".rpm", ".tar",
                                                ".tgz", ".zip", ".z", ".iso"
                                            },
                                            new String[]
                                            {
-                                               Settings.imageFileImage, "bmp",
+                                               GUISettings.imageFileImage, "bmp",
                                                ".gif", ".jpg", ".png", ".xbm",
                                                ".xpm"
                                            },
                                            new String[]
                                            {
-                                               Settings.codeFileImage, ".c",
+                                               GUISettings.codeFileImage, ".c",
                                                ".cc", ".h", ".java"
                                            },
                                            new String[]
                                            {
-                                               Settings.audioFileImage, ".au",
+                                               GUISettings.audioFileImage, ".au",
                                                ".mid", ".midi", ".mp3", ".wav"
                                            },
                                            new String[]
                                            {
-                                               Settings.execFileImage, ".bat",
+                                               GUISettings.execFileImage, ".bat",
                                                ".csh", ".cgi", ".com", ".class",
                                                ".cmd", ".csh", ".dtksh", ".exe",
                                                ".ksh", ".pdksh", ".pl", ".sh",
@@ -81,17 +82,17 @@ public class DirEntry
                                            },
                                            new String[]
                                            {
-                                               Settings.presentationFileImage,
+                                               GUISettings.presentationFileImage,
                                                ".ppt"
                                            },
                                            new String[]
                                            {
-                                               Settings.spreadsheetFileImage,
+                                               GUISettings.spreadsheetFileImage,
                                                ".xls"
                                            },
                                            new String[]
                                            {
-                                               Settings.videoFileImage, ".asf",
+                                               GUISettings.videoFileImage, ".asf",
                                                ".avi", ".mpg", "mpeg", ".wmf"
                                            }
                                        };
@@ -142,7 +143,7 @@ public class DirEntry
         }
 
         int lastIndex = f.lastIndexOf(".");
-        String image = Settings.fileImage; // default
+        String image = GUISettings.fileImage; // default
 
         if(lastIndex != -1)
         {
@@ -160,7 +161,7 @@ public class DirEntry
 
         if(img == null)
         {
-            img = HImage.getImage(c, Settings.fileImage);
+            img = HImage.getImage(c, GUISettings.fileImage);
         }
 
         isFile = true;
@@ -169,7 +170,7 @@ public class DirEntry
 
     public void setDirectory()
     {
-        img = HImage.getImage(c, Settings.dirImage);
+        img = HImage.getImage(c, GUISettings.dirImage);
         isFile = false;
         isDirectory = true;
     }
@@ -297,7 +298,7 @@ public class DirEntry
 
     public void setLink()
     {
-        img = HImage.getImage(c, Settings.linkImage);
+        img = HImage.getImage(c, GUISettings.linkImage);
         file = file.substring(0, file.lastIndexOf("###"));
         isLink = true;
     }

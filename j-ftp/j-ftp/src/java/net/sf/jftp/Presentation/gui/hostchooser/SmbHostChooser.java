@@ -16,12 +16,15 @@
 package net.sf.jftp.Presentation.gui.hostchooser;
 
 import net.miginfocom.swing.MigLayout;
+
 import net.sf.jftp.*;
-import net.sf.jftp.Domain.config.*;
+import net.sf.jftp.Presentation.GUISettings;
 import net.sf.jftp.Presentation.gui.framework.*;
 import net.sf.jftp.DataSource.net.*;
 import net.sf.jftp.DataSource.net.wrappers.SmbConnection;
 import net.sf.jftp.DataSource.net.wrappers.StartConnection;
+import net.sf.jftp.Domain.config.LoadSet;
+import net.sf.jftp.Domain.config.SaveSet;
 import net.sf.jftp.Domain.system.logging.Log;
 import net.sf.jftp.Domain.util.*;
 
@@ -81,13 +84,13 @@ public class SmbHostChooser extends HFrame implements ActionListener,
 
         try
         {
-            File f = new File(Settings.appHomeDir);
+            File f = new File(GUISettings.appHomeDir);
             f.mkdir();
 
-            File f1 = new File(Settings.login);
+            File f1 = new File(GUISettings.login);
             f1.createNewFile();
 
-            File f2 = new File(Settings.login_def_smb);
+            File f2 = new File(GUISettings.login_def_smb);
             f2.createNewFile();
         }
         catch(IOException ex)
@@ -95,7 +98,7 @@ public class SmbHostChooser extends HFrame implements ActionListener,
             ex.printStackTrace();
         }
 
-        String[] login = LoadSet.loadSet(Settings.login_def_smb);
+        String[] login = LoadSet.loadSet(GUISettings.login_def_smb);
 
         if((login[0] != null) && (login.length > 1))
         {
@@ -105,7 +108,7 @@ public class SmbHostChooser extends HFrame implements ActionListener,
         }
 
 
-        if(Settings.getStorePasswords())
+        if(GUISettings.getStorePasswords())
         {
             if((login != null) && (login.length > 2) && (login[2] != null))
             {
@@ -301,7 +304,7 @@ public class SmbHostChooser extends HFrame implements ActionListener,
             }
 
             //***save the set of selected data
-            SaveSet s = new SaveSet(Settings.login_def_smb, htmp, utmp, ptmp,
+            SaveSet s = new SaveSet(GUISettings.login_def_smb, htmp, utmp, ptmp,
                                     "", "", dtmp);
 
             //*** Now make the function call to the methos for starting 

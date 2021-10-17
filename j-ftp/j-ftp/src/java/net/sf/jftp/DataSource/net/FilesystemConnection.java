@@ -16,6 +16,7 @@
 package net.sf.jftp.DataSource.net;
 
 import java.io.BufferedInputStream;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,7 +27,7 @@ import java.io.StreamTokenizer;
 import java.util.Date;
 import java.util.Vector;
 
-import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.DataSource.DataSettings;
 import net.sf.jftp.Domain.system.StringUtils;
 import net.sf.jftp.Domain.system.logging.Log;
 
@@ -677,7 +678,7 @@ public class FilesystemConnection implements BasicConnection
             {
                 ConnectionListener listener = (ConnectionListener) listeners.elementAt(i);
 
-                if(shortProgress && Settings.shortProgress)
+                if(shortProgress && DataSettings.shortProgress)
                 {
                     if(type.startsWith(DataConnection.DFINISHED))
                     {

@@ -16,12 +16,13 @@
 package net.sf.jftp.Presentation.gui.hostchooser;
 
 import net.sf.jftp.*;
-import net.sf.jftp.Domain.config.*;
+import net.sf.jftp.Presentation.GUISettings;
 import net.sf.jftp.Presentation.gui.framework.*;
 import net.sf.jftp.Presentation.gui.tasks.ExternalDisplayer;
 import net.sf.jftp.DataSource.net.*;
 import net.sf.jftp.DataSource.net.wrappers.NfsConnection;
 import net.sf.jftp.DataSource.net.wrappers.StartConnection;
+import net.sf.jftp.Domain.config.LoadSet;
 import net.sf.jftp.Domain.system.logging.Log;
 import net.sf.jftp.Domain.util.*;
 
@@ -83,13 +84,13 @@ public class NfsHostChooser extends HFrame implements ActionListener,
         //*** MY ADDITIONS
         try
         {
-            File f = new File(Settings.appHomeDir);
+            File f = new File(GUISettings.appHomeDir);
             f.mkdir();
 
-            File f1 = new File(Settings.login);
+            File f1 = new File(GUISettings.login);
             f1.createNewFile();
 
-            File f2 = new File(Settings.login_def_nfs);
+            File f2 = new File(GUISettings.login_def_nfs);
             f2.createNewFile();
         }
         catch(IOException ex)
@@ -98,7 +99,7 @@ public class NfsHostChooser extends HFrame implements ActionListener,
         }
 
         LoadSet l = new LoadSet();
-        String[] login = l.loadSet(Settings.login_def_nfs);
+        String[] login = l.loadSet(GUISettings.login_def_nfs);
 
         if((login[0] != null) && (login.length > 1))
         {
@@ -114,7 +115,7 @@ public class NfsHostChooser extends HFrame implements ActionListener,
 
         }
         */
-        if(Settings.getStorePasswords())
+        if(GUISettings.getStorePasswords())
         {
             if((login[0] != null) && (login.length > 2) && (login[2] != null))
             {
@@ -165,11 +166,11 @@ public class NfsHostChooser extends HFrame implements ActionListener,
     {
         if(e.getSource() == info)
         {
-            java.net.URL url = ClassLoader.getSystemResource(Settings.nfsinfo);
+            java.net.URL url = ClassLoader.getSystemResource(GUISettings.nfsinfo);
 
             if(url == null)
             {
-                url = HImage.class.getResource("/" + Settings.nfsinfo);
+                url = HImage.class.getResource("/" + GUISettings.nfsinfo);
             }
 
             ExternalDisplayer d = new ExternalDisplayer(url);

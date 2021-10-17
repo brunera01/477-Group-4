@@ -16,12 +16,13 @@
 package net.sf.jftp.Presentation.gui.tasks;
 
 import java.awt.FlowLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 
-import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.Presentation.GUISettings;
 import net.sf.jftp.Presentation.gui.framework.HButton;
 import net.sf.jftp.Presentation.gui.framework.HPanel;
 import net.sf.jftp.Presentation.gui.framework.HTextField;
@@ -45,8 +46,8 @@ public class ProxyChooser extends HPanel implements ActionListener
         proxy = new HTextField("Socks proxy:", "");
         port = new HTextField("Port:", "");
 
-        proxy.setText(Settings.getSocksProxyHost());
-        port.setText(Settings.getSocksProxyPort());
+        proxy.setText(GUISettings.getSocksProxyHost());
+        port.setText(GUISettings.getSocksProxyPort());
 
         //getContentPane().
         add(proxy);
@@ -78,9 +79,9 @@ public class ProxyChooser extends HPanel implements ActionListener
             sysprops.remove("socksProxyHost");
             sysprops.remove("socksProxyPort");
 
-            Settings.setProperty("jftp.socksProxyHost", h);
-            Settings.setProperty("jftp.socksProxyPort", p);
-            Settings.save();
+            GUISettings.setProperty("jftp.socksProxyHost", h);
+            GUISettings.setProperty("jftp.socksProxyPort", p);
+            GUISettings.save();
 
             Log.out("proxy vars: " + h + ":" + p);
 

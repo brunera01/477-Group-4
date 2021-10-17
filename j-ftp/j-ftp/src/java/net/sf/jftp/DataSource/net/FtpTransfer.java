@@ -1,9 +1,10 @@
 package net.sf.jftp.DataSource.net;
 
 import java.io.File;
+
 import java.util.Vector;
 
-import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.DataSource.DataSettings;
 import net.sf.jftp.Domain.system.logging.Log;
 
 
@@ -143,7 +144,7 @@ public class FtpTransfer extends Transfer implements Runnable
             hasPaused = true;
         }
 
-        while((handler.getConnectionSize() >= Settings.getMaxConnections()) &&
+        while((handler.getConnectionSize() >= DataSettings.getMaxConnections()) &&
                   (handler.getConnectionSize() > 0) && work)
         {
             try
@@ -193,7 +194,7 @@ public class FtpTransfer extends Transfer implements Runnable
 
         try
         {
-        	Thread.sleep(Settings.ftpTransferThreadPause);
+        	Thread.sleep(DataSettings.ftpTransferThreadPause);
         }
         catch(Exception ex)
         {

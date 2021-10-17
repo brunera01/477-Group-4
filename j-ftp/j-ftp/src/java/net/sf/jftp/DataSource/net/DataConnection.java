@@ -16,6 +16,7 @@
 package net.sf.jftp.DataSource.net;
 
 import java.io.BufferedInputStream;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -26,7 +27,7 @@ import java.io.StreamTokenizer;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.DataSource.DataSettings;
 import net.sf.jftp.Domain.system.logging.Log;
 
 
@@ -172,12 +173,12 @@ public class DataConnection implements Runnable
 	    newLine = con.getCRLF();
 	    //Log.debug("NL: "+newLine+"\n\n\n\n\n");
 
-            if(Settings.getFtpPasvMode())
+            if(DataSettings.getFtpPasvMode())
             {
                 try
                 {
                     sock = new Socket(host, port);
-                    sock.setSoTimeout(Settings.getSocketTimeout());
+                    sock.setSoTimeout(DataSettings.getSocketTimeout());
                 }
                 catch(Exception ex)
                 {
@@ -216,7 +217,7 @@ public class DataConnection implements Runnable
 
         try
         {
-            if(!Settings.getFtpPasvMode())
+            if(!DataSettings.getFtpPasvMode())
             {
                 int retry = 0;
 
@@ -224,7 +225,7 @@ public class DataConnection implements Runnable
                 {
                     try
                     {
-                        ssock.setSoTimeout(Settings.connectionTimeout);
+                        ssock.setSoTimeout(DataSettings.connectionTimeout);
                         sock = ssock.accept();
                     }
                     catch(IOException e)
@@ -252,7 +253,7 @@ public class DataConnection implements Runnable
 
             if(ok)
             {
-                byte[] buf = new byte[Settings.bufferSize];
+                byte[] buf = new byte[DataSettings.bufferSize];
                 start = System.currentTimeMillis();
 
                 long buflen = 0;
@@ -278,7 +279,7 @@ public class DataConnection implements Runnable
                                     localfile = file;
                                 }
 
-                                File f2 = new File(Settings.appHomeDir);
+                                File f2 = new File(DataSettings.appHomeDir);
                                 f2.mkdirs();
 
                                 File f = new File(localfile);
@@ -289,7 +290,7 @@ public class DataConnection implements Runnable
                                 }
 
                                 bOut = new BufferedOutputStream(new FileOutputStream(localfile),
-                                                                Settings.bufferSize);
+                                                                DataSettings.bufferSize);
                             }
                         }
                         catch(Exception ex)
@@ -305,7 +306,7 @@ public class DataConnection implements Runnable
                         try
                         {
                             in = new BufferedInputStream(sock.getInputStream(),
-                                                         Settings.bufferSize);
+                                                         DataSettings.bufferSize);
                             
                             if(justStream)
                             {
@@ -632,7 +633,7 @@ public class DataConnection implements Runnable
         	debug(ex.toString());
         }
         
-        if(!Settings.getFtpPasvMode())
+        if(!DataSettings.getFtpPasvMode())
         {
         	try
         	{
@@ -683,7 +684,7 @@ public class DataConnection implements Runnable
         long now = System.currentTimeMillis();
         long offset = now - start;
 
-        if(offset > Settings.statusMessageAfterMillis)
+        if(offset > DataSettings.statusMessageAfterMillis)
         {
             start = now;
 
@@ -715,7 +716,7 @@ public class DataConnection implements Runnable
 
     public void interrupt()
     {
-        if(Settings.getFtpPasvMode() &&
+        if(DataSettings.getFtpPasvMode() &&
                (type.equals(GET) || type.equals(GETDIR)))
         {
             try

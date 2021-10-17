@@ -17,6 +17,8 @@ package net.sf.jftp.Domain.config;
 
 import java.io.*;
 
+import net.sf.jftp.Domain.DomainSettings;
+
 
 public class SaveSet
 {
@@ -32,7 +34,7 @@ public class SaveSet
             out.println(host);
             out.println(user);
 
-            if(Settings.getStorePasswords())
+            if(DomainSettings.getStorePasswords())
             {
             	savePW(pass, out);
             }
@@ -60,7 +62,7 @@ public class SaveSet
             out.println(host);
             out.println(user);
 
-            if(Settings.getStorePasswords())
+            if(DomainSettings.getStorePasswords())
             {
                 savePW(pass, out);
             }

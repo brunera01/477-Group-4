@@ -15,7 +15,7 @@
  */
 package net.sf.jftp.Presentation.gui.tasks;
 
-import net.sf.jftp.Domain.config.Settings;
+
 import net.sf.jftp.Presentation.gui.*;
 import net.sf.jftp.Presentation.gui.framework.*;
 import net.sf.jftp.Domain.util.*;

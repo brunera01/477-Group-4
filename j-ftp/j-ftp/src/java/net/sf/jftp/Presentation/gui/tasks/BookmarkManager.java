@@ -16,7 +16,7 @@
 package net.sf.jftp.Presentation.gui.tasks;
 
 import net.sf.jftp.*;
-import net.sf.jftp.Domain.config.*;
+import net.sf.jftp.Presentation.GUISettings;
 import net.sf.jftp.Presentation.gui.framework.*;
 import net.sf.jftp.Domain.system.logging.Log;
 import net.sf.jftp.Domain.util.*;
@@ -42,7 +42,7 @@ public class BookmarkManager extends JInternalFrame implements ActionListener
         setSize(600, 540);
         getContentPane().setLayout(new BorderLayout());
 
-        load(Settings.bookmarks);
+        load(GUISettings.bookmarks);
 
         JScrollPane jsp = new JScrollPane(info);
         getContentPane().add("Center", jsp);
@@ -71,7 +71,7 @@ public class BookmarkManager extends JInternalFrame implements ActionListener
         }
         else
         {
-            save(Settings.bookmarks);
+            save(GUISettings.bookmarks);
             JFtp.menuBar.loadBookmarks();
             this.dispose();
         }

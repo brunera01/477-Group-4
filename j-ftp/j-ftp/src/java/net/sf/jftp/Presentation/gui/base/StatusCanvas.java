@@ -16,7 +16,7 @@
 package net.sf.jftp.Presentation.gui.base;
 
 import net.sf.jftp.*;
-import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.Presentation.GUISettings;
 import net.sf.jftp.Presentation.gui.framework.*;
 
 import java.awt.*;
@@ -28,7 +28,7 @@ public class StatusCanvas extends JPanel
 {
     JLabel host = new JLabel("");
     JLabel separator = new JLabel("   ");
-    JLabel text = new JLabel(Settings.greeting);
+    JLabel text = new JLabel(GUISettings.greeting);
     String drawText = "";
     int pos = 0;
     Image image;

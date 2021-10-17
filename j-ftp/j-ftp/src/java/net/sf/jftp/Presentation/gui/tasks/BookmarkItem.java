@@ -16,7 +16,7 @@
 package net.sf.jftp.Presentation.gui.tasks;
 
 import net.sf.jftp.JFtp;
-import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.Presentation.GUISettings;
 import net.sf.jftp.Presentation.gui.base.UIUtils;
 import net.sf.jftp.Presentation.gui.framework.*;
 import net.sf.jftp.DataSource.net.*;
@@ -82,7 +82,7 @@ public class BookmarkItem extends JMenuItem
     {
         if(protocol.equals("FTP"))
         {
-            if(pass.equals(Settings.hiddenPassword))
+            if(pass.equals(GUISettings.hiddenPassword))
             {
                 pass = UIUtils.getPasswordFromUser(JFtp.statusP.jftp);
             }
@@ -92,7 +92,7 @@ public class BookmarkItem extends JMenuItem
 
             if(i < 0)
             {
-                pass = Settings.hiddenPassword;
+                pass = GUISettings.hiddenPassword;
             }
 
             /*
@@ -106,7 +106,7 @@ public class BookmarkItem extends JMenuItem
         }
         else
         {
-            if(pass.equals(Settings.hiddenPassword))
+            if(pass.equals(GUISettings.hiddenPassword))
             {
                 pass = UIUtils.getPasswordFromUser(JFtp.statusP.jftp);
             }
@@ -116,7 +116,7 @@ public class BookmarkItem extends JMenuItem
 
             if(!ok)
             {
-                pass = Settings.hiddenPassword;
+                pass = GUISettings.hiddenPassword;
             }
         }
     }

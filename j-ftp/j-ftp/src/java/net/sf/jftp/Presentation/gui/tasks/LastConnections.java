@@ -19,9 +19,9 @@
 package net.sf.jftp.Presentation.gui.tasks;
 
 import net.sf.jftp.JFtp;
+import net.sf.jftp.Presentation.GUISettings;
 
 //***
-import net.sf.jftp.Domain.config.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -60,16 +60,16 @@ public class LastConnections
     {
         try
         {
-            File f1 = new File(Settings.appHomeDir);
+            File f1 = new File(GUISettings.appHomeDir);
             f1.mkdir();
 
-            File f2 = new File(Settings.last_cons);
+            File f2 = new File(GUISettings.last_cons);
             f2.createNewFile();
 
             FileOutputStream fos;
             PrintStream out;
 
-            fos = new FileOutputStream(Settings.last_cons);
+            fos = new FileOutputStream(GUISettings.last_cons);
             out = new PrintStream(fos);
 
             //String[] lastCons = new String[capacity];
@@ -122,10 +122,10 @@ public class LastConnections
         //	System.out.println("not found");
         try
         {
-            File f1 = new File(Settings.appHomeDir);
+            File f1 = new File(GUISettings.appHomeDir);
             f1.mkdir();
 
-            File f2 = new File(Settings.last_cons);
+            File f2 = new File(GUISettings.last_cons);
 
             //File f;
             //f = init(capacity);
@@ -550,7 +550,7 @@ public class LastConnections
             FileOutputStream fos;
             PrintStream out;
 
-            fos = new FileOutputStream(Settings.last_cons);
+            fos = new FileOutputStream(GUISettings.last_cons);
             out = new PrintStream(fos);
 
             for(int i = 0; i < capacity; i++)

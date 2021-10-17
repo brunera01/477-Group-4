@@ -18,8 +18,9 @@
 package net.sf.jftp.DataSource.net.wrappers;
 
 import net.sf.jftp.JFtp;
-import net.sf.jftp.Domain.config.Settings;
+
 import net.sf.jftp.Presentation.gui.tasks.LastConnections;
+import net.sf.jftp.DataSource.DataSettings;
 import net.sf.jftp.DataSource.net.ConnectionListener;
 import net.sf.jftp.DataSource.net.FtpConnection;
 import net.sf.jftp.Domain.system.logging.Log;
@@ -115,7 +116,7 @@ public class StartConnection
                 searchValue[1] = htmp;
                 searchValue[2] = utmp;
 
-                if(Settings.getStorePasswords())
+                if(DataSettings.getStorePasswords())
                 {
                     searchValue[3] = ptmp;
                 }
@@ -179,7 +180,7 @@ public class StartConnection
             searchValue[1] = htmp;
             searchValue[2] = utmp;
 
-            if(Settings.getStorePasswords())
+            if(DataSettings.getStorePasswords())
             {
                 searchValue[3] = ptmp;
             }
@@ -232,8 +233,8 @@ public class StartConnection
     public static int startFtpCon(String htmp, String utmp, String ptmp,
                                   int potmp, String dtmp, boolean useLocal, String crlf)
     {
-        boolean pasv = Settings.getFtpPasvMode();
-        boolean threads = Settings.getEnableMultiThreading();
+        boolean pasv = DataSettings.getFtpPasvMode();
+        boolean threads = DataSettings.getEnableMultiThreading();
 
         //BUGFIX: this is now an array
         //String searchValue = new String("");
@@ -310,7 +311,7 @@ public class StartConnection
             searchValue[1] = htmp;
             searchValue[2] = utmp;
 
-            if(Settings.getStorePasswords())
+            if(DataSettings.getStorePasswords())
             {
                 searchValue[3] = ptmp;
             }

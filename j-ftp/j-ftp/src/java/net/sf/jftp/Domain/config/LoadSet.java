@@ -16,9 +16,10 @@
 package net.sf.jftp.Domain.config;
 
 import net.sf.jftp.*;
-import net.sf.jftp.Domain.config.*;
+
 import net.sf.jftp.Presentation.gui.*;
 import net.sf.jftp.Presentation.gui.base.UIUtils;
+import net.sf.jftp.Domain.DomainSettings;
 import net.sf.jftp.Domain.system.logging.Log;
 import net.sf.jftp.Domain.util.*;
 
@@ -40,13 +41,13 @@ public class LoadSet
             result[4] = breader.readLine();
             result[5] = breader.readLine();
 
-            if((result[2].equals("") || !Settings.getStorePasswords()) && ask)
+            if((result[2].equals("") || !DomainSettings.getStorePasswords()) && ask)
             {
                 result[2] = UIUtils.getPasswordFromUser(JFtp.statusP.jftp);
                 Log.debug("fetched: " + result[2] + ", storing: " +
-                          Settings.getStorePasswords());
+                          DomainSettings.getStorePasswords());
             }
-            else if(!result[2].equals("") || Settings.getStorePasswords())
+            else if(!result[2].equals("") || DomainSettings.getStorePasswords())
             {
                 // need to decode
                 String decoded = Crypto.Decrypt(result[2]);

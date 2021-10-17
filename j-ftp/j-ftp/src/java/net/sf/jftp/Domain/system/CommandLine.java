@@ -15,7 +15,6 @@
  */
 package net.sf.jftp.Domain.system;
 
-import net.sf.jftp.Domain.config.Settings;
 import net.sf.jftp.Presentation.event.*;
 import net.sf.jftp.DataSource.net.*;
 import net.sf.jftp.Domain.system.logging.Log;

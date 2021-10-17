@@ -16,6 +16,7 @@
 package net.sf.jftp.Presentation.gui.hostchooser;
 
 import java.awt.BorderLayout;
+
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -41,7 +42,7 @@ import net.miginfocom.swing.MigLayout;
 import net.sf.jftp.JFtp;
 import net.sf.jftp.Domain.config.LoadSet;
 import net.sf.jftp.Domain.config.SaveSet;
-import net.sf.jftp.Domain.config.Settings;
+import net.sf.jftp.Presentation.GUISettings;
 import net.sf.jftp.Presentation.gui.base.FtpHost;
 import net.sf.jftp.Presentation.gui.framework.HButton;
 import net.sf.jftp.Presentation.gui.framework.HFrame;
@@ -68,14 +69,14 @@ public class HostChooser extends HFrame implements ActionListener,
     public HPasswordField pass = new HPasswordField("Password:",
                                                     "none@nowhere.no");
     public HTextField port = new HTextField("Port:    ", "21");
-    public HTextField cwd = new HTextField("Remote:  ", Settings.defaultDir);
-    public HTextField lcwd = new HTextField("Local:   ", Settings.defaultWorkDir);
+    public HTextField cwd = new HTextField("Remote:  ", GUISettings.defaultDir);
+    public HTextField lcwd = new HTextField("Local:   ", GUISettings.defaultWorkDir);
     public HTextField dl = new HTextField("Max. connections:    ", "3");
     public HTextField crlf = new HTextField("Override server newline:    ", "<default>");
     private JCheckBox anonBox = new JCheckBox("Use anonymous login", false);
     private JCheckBox listBox = new JCheckBox("LIST compatibility mode", false);
     private JCheckBox dirBox = new JCheckBox("Use default directories",
-                                             Settings.getUseDefaultDir());
+                                             GUISettings.getUseDefaultDir());
     private JCheckBox modeBox = new JCheckBox("Use active Ftp (no need to)",
                                               false);
     private JCheckBox threadBox = new JCheckBox("Multiple connections", false);
@@ -89,7 +90,7 @@ public class HostChooser extends HFrame implements ActionListener,
     private ComponentListener listener = null;
     private int mode = 0;
     private boolean useLocal = false;
-    private boolean ext = Settings.showNewlineOption;
+    private boolean ext = GUISettings.showNewlineOption;
 
     public HostChooser(ComponentListener l, boolean local)
     {
@@ -120,7 +121,7 @@ public class HostChooser extends HFrame implements ActionListener,
 
         try {
         	LoadSet l = new LoadSet();
-        	String[] login = l.loadSet(Settings.login_def);
+        	String[] login = l.loadSet(GUISettings.login_def);
 
         	if((login != null) && (login[0] != null))
         	{
@@ -143,7 +144,7 @@ public class HostChooser extends HFrame implements ActionListener,
         		}
         	}
 
-        	if(Settings.getStorePasswords())
+        	if(GUISettings.getStorePasswords())
         	{
         		if(login != null && login[2] != null)
         		{
@@ -198,9 +199,9 @@ public class HostChooser extends HFrame implements ActionListener,
         	root.add(x1, "wrap");
         }
 
-        modeBox.setSelected(!Settings.getFtpPasvMode());
-        threadBox.setSelected(Settings.getEnableMultiThreading());
-        dirBox.setSelected(Settings.getUseDefaultDir());
+        modeBox.setSelected(!GUISettings.getFtpPasvMode());
+        threadBox.setSelected(GUISettings.getEnableMultiThreading());
+        dirBox.setSelected(GUISettings.getUseDefaultDir());
         anonBox.addActionListener(this);
         threadBox.addActionListener(this);
 
@@ -297,10 +298,10 @@ public class HostChooser extends HFrame implements ActionListener,
             String ptmp = StringUtils.cut(pass.getText(), " ");
             String potmp = StringUtils.cut(port.getText(), " ");
 
-            Settings.setProperty("jftp.ftpPasvMode", !modeBox.isSelected());
-            Settings.setProperty("jftp.enableMultiThreading",
+            GUISettings.setProperty("jftp.ftpPasvMode", !modeBox.isSelected());
+            GUISettings.setProperty("jftp.enableMultiThreading",
                                  threadBox.isSelected());
-            Settings.setProperty("jftp.useDefaultDir", dirBox.isSelected());
+            GUISettings.setProperty("jftp.useDefaultDir", dirBox.isSelected());
 
             if(listBox.isSelected())
             {
@@ -318,21 +319,21 @@ public class HostChooser extends HFrame implements ActionListener,
             JFtp.hostinfo.port = potmp;
             JFtp.hostinfo.type = "ftp";
 
-            boolean pasv = Settings.getFtpPasvMode();
-            boolean threads = Settings.getEnableMultiThreading();
+            boolean pasv = GUISettings.getFtpPasvMode();
+            boolean threads = GUISettings.getEnableMultiThreading();
 
             int x = Integer.parseInt(dl.getText().trim());
-            Settings.maxConnections = x;
+            GUISettings.maxConnections = x;
 
-            Settings.save();
+            GUISettings.save();
 
             String dtmp;
             String ltmp;
 
             if(dirBox.isSelected())
             {
-                dtmp = Settings.defaultDir;
-                ltmp = Settings.defaultWorkDir;
+                dtmp = GUISettings.defaultDir;
+                ltmp = GUISettings.defaultWorkDir;
             }
             else
             {
@@ -340,7 +341,7 @@ public class HostChooser extends HFrame implements ActionListener,
                 ltmp = lcwd.getText();
             }
 
-            SaveSet s = new SaveSet(Settings.login_def, htmp, utmp, ptmp,
+            SaveSet s = new SaveSet(GUISettings.login_def, htmp, utmp, ptmp,
                                     potmp, dtmp, ltmp);
 
             if(JFtp.localDir instanceof FilesystemConnection)
@@ -385,8 +386,8 @@ public class HostChooser extends HFrame implements ActionListener,
             user.setText(selectedHost.username);
             port.setText(selectedHost.port);
 
-            Settings.setProperty("jftp.useDefaultDir", true);
-            dirBox.setSelected(Settings.getUseDefaultDir());
+            GUISettings.setProperty("jftp.useDefaultDir", true);
+            dirBox.setSelected(GUISettings.getUseDefaultDir());
             lcwd.setEnabled(!dirBox.isSelected());
             cwd.setEnabled(!dirBox.isSelected());
         }
@@ -518,7 +519,7 @@ public class HostChooser extends HFrame implements ActionListener,
         //System.out.println(htmp + " " + ptmp + " " + utmp);
         //System.out.println(potmp + " " + dtmp);
         //***
-        if((response == FtpConnection.OFFLINE) && Settings.reconnect)
+        if((response == FtpConnection.OFFLINE) && GUISettings.reconnect)
         {
             //FtpConnection con;
             setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
@@ -574,7 +575,7 @@ public class HostChooser extends HFrame implements ActionListener,
         }
         else if((response != FtpConnection.LOGIN_OK) ||
                     ((response == FtpConnection.OFFLINE) &&
-                    (!Settings.reconnect)))
+                    (!GUISettings.reconnect)))
         {
             setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
