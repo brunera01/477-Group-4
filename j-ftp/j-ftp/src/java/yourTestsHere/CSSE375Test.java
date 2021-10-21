@@ -57,10 +57,33 @@ public class CSSE375Test {
 		
 		// JFtp jftp = new JFtp(); //this line is problematical because it opens the GUI
 		
-		LocalDir local = new LocalDir();
-		RemoteDir bar = new RemoteDir();
+		ConnectionHandler connectionHandler = new ConnectionHandler();
+		String file = "steve.txt";
+	
+		Transfer transfer = new FtpTransfer(file, 0, file, file, file, file, file, file, connectionHandler, null, file);  
 		
-		fail("Not yet implemented");
+		int beforeSize = connectionHandler.getConnectionSize();
+		connectionHandler.addConnection(file, transfer);
+		int afterSize = connectionHandler.getConnectionSize(); 
+		assertSame(0, afterSize-beforeSize);//fail("Not yet implemented");
 	}
+	
+//	@Test
+//	public void testIncorrectFile() {
+//		
+//		// JFtp jftp = new JFtp(); //this line is problematical because it opens the GUI
+//		
+//		LocalDir local = new LocalDir();
+//		RemoteDir bar = new RemoteDir();
+//		 
+//		 assertThrows(NullPointerException.class,
+//		            ()->{
+//		            	FtpDownload download = new FtpDownload("99999", "steve.txt"); 
+//		            });
+//	}
+//	
+//	@Test 
+//	
+	
 
 }
