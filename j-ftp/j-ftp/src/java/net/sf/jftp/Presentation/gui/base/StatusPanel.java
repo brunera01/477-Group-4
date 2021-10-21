@@ -86,27 +86,30 @@ public class StatusPanel extends HPanel implements ActionListener
         newcon.setSize(24, 24);
         newcon.setToolTipText("New FTP Connection...");
         bar.add(new JLabel(" "));
-
+        if(GUISettings.smbAllowed) {
         bar.add(smbcon);
         smbcon.setSize(24, 24);
         smbcon.setToolTipText("New SMB Connection...");
         bar.add(new JLabel(" "));
-
+        }
+        if(GUISettings.sftpAllowed) {
         bar.add(sftpcon);
         sftpcon.setSize(24, 24);
         sftpcon.setToolTipText("New SFTP Connection...");
         bar.add(new JLabel(" "));
-
+        }
+        if(GUISettings.nfsAllowed) {
         bar.add(nfscon);
         nfscon.setSize(24, 24);
         nfscon.setToolTipText("New NFS Connection...");
         bar.add(new JLabel(" "));
-
+        }
+        if(GUISettings.webDavAllowed) {
         if(GUISettings.enableWebDav) bar.add(webdavcon);
         webdavcon.setSize(24, 24);
         webdavcon.setToolTipText("New WebDAV Connection...");
         bar.add(new JLabel("   "));
-
+        }
         bar.add(close);
         close.setSize(24, 24);
         close.setToolTipText("Close Active Remote tab...");

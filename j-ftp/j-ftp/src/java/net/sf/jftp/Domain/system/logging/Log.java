@@ -17,70 +17,58 @@ package net.sf.jftp.Domain.system.logging;
 
 import net.sf.jftp.Domain.DomainSettings;
 
-public class Log
-{
-    private static Logger logger = new SystemLogger();
-    private static Log log = new Log();
-    private static StringBuffer cache = new StringBuffer();
+public class Log {
+	private static Logger logger = new SystemLogger();
+	private static Log log = new Log();
+	private static StringBuffer cache = new StringBuffer();
 
-    private Log()
-    {
-    }
+	private Log() {
+	}
 
-    public static void setLogger(Logger logger)
-    {
-        Log.logger = logger;
-    }
+	public static void setLogger(Logger logger) {
+		Log.logger = logger;
+	}
 
-    public static void debug(String msg)
-    {
-        if(DomainSettings.getDisableLog())
-        {
-            return;
-        }
+	public static void debug(String msg) {
+		if (DomainSettings.getDisableLog()) {
+			return;
+		}
 
-        //System.out.println(msg);
-        logger.debug(msg);
-        cache.append(msg + "\n");
+		logger.debug(msg);
+		cache.append(msg + "\n");
 
-        if(!DomainSettings.getEnableDebug()) System.out.println("> " + msg);
-    }
+		if (!DomainSettings.getEnableDebug())
+			System.out.println("> " + msg);
+	}
 
-    public static void debugRaw(String msg)
-    {
-        if(DomainSettings.getDisableLog())
-        {
-            return;
-        }
+	public static void debugRaw(String msg) {
+		if (DomainSettings.getDisableLog()) {
+			return;
+		}
 
-        logger.debugRaw(msg);
-        cache.append(msg);
+		logger.debugRaw(msg);
+		cache.append(msg);
 
-        if(DomainSettings.getEnableDebug()) System.out.print(msg);
-    }
+		if (DomainSettings.getEnableDebug())
+			System.out.print(msg);
+	}
 
-    public static void out(String msg)
-    {
-        if(!DomainSettings.getEnableDebug())
-        {
-            return;
-        }
+	public static void out(String msg) {
+		if (!DomainSettings.getEnableDebug()) {
+			return;
+		}
 
-        System.out.println("> " + msg);
-    }
-    
-    public static void devnull(Object msg)
-    {
-    }
+		System.out.println("> " + msg);
+	}
 
+	public static void devnull(Object msg) {
+	}
 
-    public static String getCache()
-    {
-        return cache.toString();
-    }
+	public static String getCache() {
+		return cache.toString();
+	}
 
-    public static void clearCache()
-    {
-        cache = new StringBuffer();
-    }
+	public static void clearCache() {
+		cache = new StringBuffer();
+	}
 }

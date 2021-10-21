@@ -1,0 +1,29 @@
+ ---------------- Output -----------------
+ Connecting to 477-4.csse.rose-hulman.edu
+ 220 pyftpdlib 1.5.6 ready.
+ Connection established...
+ > USER brunera1
+ 331 Username ok, send password.
+ > PASS ****
+ 230 Login successful.
+ Logged in...
+ > SYST
+ 215 UNIX Type: L8
+ > TYPE I
+ 200 Type set to: Binary.
+ > PWD
+ 257 "/" is the current directory.
+ > MODE S
+ 200 Transfer mode set to: S
+ > TYPE A
+ 200 Type set to: ASCII.
+ > PASV
+ 227 Entering passive mode (137,112,89,197,147,189).
+ > LIST
+ 125 Data connection already open. Transfer starting.
+ 226 Transfer complete.
+ > TYPE I
+ 200 Type set to: Binary.
+ Connecting to 477-4.csse.rose-hulman.edu
+ java.net.ConnectException: Connection refused: connect
+ FTP not available!
