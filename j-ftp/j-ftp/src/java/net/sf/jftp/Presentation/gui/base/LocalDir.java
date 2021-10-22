@@ -30,6 +30,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StreamTokenizer;
+import java.net.Socket;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -773,7 +774,12 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
         }
         else if(e.getActionCommand().equals("->"))
         {
-            blockedTransfer(-2);
+        	try {
+				FtpConnection con = (FtpConnection) JFtp.localDir.getCon();
+				new Socket(con.getHost(), con.getPort());
+				blockedTransfer(-2);
+			} catch(Exception ex) {
+			}
         }
         else if(e.getActionCommand().equals("<-"))
         {

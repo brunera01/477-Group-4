@@ -28,6 +28,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.lang.reflect.Array;
+import java.net.Socket;
 import java.util.Date;
 
 import javax.swing.DefaultListModel;
@@ -589,7 +590,12 @@ public class RemoteDir extends DirComponent
 		} else if (e.getActionCommand().equals("->")) {
 			blockedTransfer(-2);
 		} else if (e.getActionCommand().equals("<-")) {
-			blockedTransfer(-2);
+			try {
+				FtpConnection con = (FtpConnection) JFtp.remoteDir.getCon();
+				new Socket(con.getHost(), con.getPort());
+				blockedTransfer(-2);
+			} catch(Exception ex) {
+			}
 		} else if (e.getActionCommand().equals("list")) {
 			try {
 				if (!(con instanceof FtpConnection)) {
