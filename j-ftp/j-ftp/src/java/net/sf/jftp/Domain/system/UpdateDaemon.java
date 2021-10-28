@@ -16,7 +16,7 @@
 package net.sf.jftp.Domain.system;
 
 import net.sf.jftp.JFtp;
-
+import net.sf.jftp.StatusChecker;
 import net.sf.jftp.Presentation.gui.*;
 import net.sf.jftp.Presentation.gui.base.LocalDir;
 import net.sf.jftp.Presentation.gui.base.RemoteDir;
@@ -33,11 +33,12 @@ public class UpdateDaemon implements Runnable
     private static int cal;
     private Thread runner = null;
     private JFtp jftp;
+    private StatusChecker sc;
 
     public UpdateDaemon(JFtp jftp)
     {
         this.jftp = jftp;
-
+        sc = new StatusChecker();
         runner = new Thread(this);
         runner.start();
     }
@@ -120,7 +121,11 @@ public class UpdateDaemon implements Runnable
                     log = 0;
                     Thread.sleep(500);
                 }
-
+                //System.out.println("Checking Status");
+                if(!sc.checkStatus()) {
+                	System.out.println("System is unavailable");
+                	return;
+                }
                 Thread.sleep(DomainSettings.uiRefresh);
             }
             catch(Exception ex)

@@ -71,4 +71,8 @@ public class Log {
 	public static void clearCache() {
 		cache = new StringBuffer();
 	}
+	
+	public static boolean getStatus() {
+		return true;
+	}
 }

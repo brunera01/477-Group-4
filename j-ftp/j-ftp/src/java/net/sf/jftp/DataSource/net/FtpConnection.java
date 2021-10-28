@@ -102,6 +102,9 @@ public class FtpConnection implements BasicConnection, FtpConstants {
 	private Vector<ConnectionListener> listeners = new Vector<ConnectionListener>();
 	private ConnectionHandler handler = new ConnectionHandler();
 	private FtpKeepAliveThread keepAliveThread = null;
+	private int retryConnection = 0;
+	private int retryUpload = 0;
+	private int retryDownload = 0;
 
 	// directory downloaded to
 	private String localPath = null;
@@ -228,6 +231,11 @@ public class FtpConnection implements BasicConnection, FtpConstants {
 			{
 				ok = false;
 				Log.debug("Server closed Connection, maybe too many users...");
+				if(this.retryConnection < 2) {
+					this.retryConnection++;
+					System.out.println("Retrying Connection");
+					return login(username, password);
+				}
 				status = OFFLINE;
 			}
 
@@ -248,6 +256,11 @@ public class FtpConnection implements BasicConnection, FtpConstants {
 					}
 				} else {
 					Log.debug("Wrong password!");
+					if(this.retryConnection < 2) {
+						this.retryConnection++;
+						System.out.println("Retrying Connection");
+						return login(username, password);
+					}
 					ok = false;
 					status = WRONG_LOGIN_DATA;
 				}
@@ -255,6 +268,11 @@ public class FtpConnection implements BasicConnection, FtpConstants {
 		} else {
 			if (msg) {
 				Log.debug("FTP not available!");
+				if(this.retryConnection < 2) {
+					this.retryConnection++;
+					System.out.println("Retrying Connection");
+					return login(username, password);
+				}
 				ok = false;
 				status = GENERIC_FAILED;
 			}
@@ -310,7 +328,7 @@ public class FtpConnection implements BasicConnection, FtpConstants {
 		} else {
 			fireConnectionFailed(this, new Integer(status).toString());
 		}
-
+		this.retryConnection = 0;
 		return status;
 	}
 

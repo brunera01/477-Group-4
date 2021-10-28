@@ -595,4 +595,8 @@ public class HostChooser extends HFrame implements ActionListener,
         }
     }
 
+	public static boolean getStatus() {
+		return true;
+	}
+
 }

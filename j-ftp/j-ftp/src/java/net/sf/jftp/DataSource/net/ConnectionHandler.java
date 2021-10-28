@@ -60,4 +60,8 @@ public class ConnectionHandler
 
         return size;
     }
+    
+    public static boolean getStatus() {
+    	return true;
+    }
 }

@@ -1,0 +1,174 @@
+ ---------------- Output -----------------
+ Connecting to 477-4.csse.rose-hulman.edu
+ 220 pyftpdlib 1.5.6 ready.
+ Connection established...
+ > USER brunera1
+ 331 Username ok, send password.
+ > PASS ****
+ 230 Login successful.
+ Logged in...
+ > SYST
+ 215 UNIX Type: L8
+ > TYPE I
+ 200 Type set to: Binary.
+ > PWD
+ 257 "/" is the current directory.
+ > MODE S
+ 200 Transfer mode set to: S
+ > TYPE A
+ 200 Type set to: ASCII.
+ > PASV
+ 227 Entering passive mode (137,112,89,197,181,169).
+ > LIST
+ 150 File status okay. About to open data connection.
+ 226 Transfer complete.
+ > TYPE I
+ 200 Type set to: Binary.
+ Connecting to 477-4.csse.rose-hulman.edu
+ 220 pyftpdlib 1.5.6 ready.
+ Connection established...
+ > USER brunera1
+ 331 Username ok, send password.
+ > PASS ****
+ 230 Login successful.
+ Logged in...
+ > SYST
+ 215 UNIX Type: L8
+ > TYPE I
+ 200 Type set to: Binary.
+ > CWD /
+ 250 "/" is the current directory.
+ > PWD
+ 257 "/" is the current directory.
+ File: C:/Users/brunera1/debug.log
+ > MODE S
+ 200 Transfer mode set to: S
+ > TYPE A
+ 200 Type set to: ASCII.
+ > PASV
+ 227 Entering passive mode (137,112,89,197,229,125).
+ > LIST
+ 125 Data connection already open. Transfer starting.
+ 226 Transfer complete.
+ > TYPE I
+ 200 Type set to: Binary.
+ > PASV
+ 227 Entering passive mode (137,112,89,197,169,145).
+ > STOR debug.log
+ 150 File status okay. About to open data connection.
+ > NOOP
+ 200 I successfully done nothin'.
+ Transfer already in progress: C:/Users/brunera1/debug.log
+ > CWD /
+ 250 "/" is the current directory.
+ > PWD
+ 257 "/" is the current directory.
+ > TYPE A
+ 200 Type set to: ASCII.
+ > PASV
+ 227 Entering passive mode (137,112,89,197,208,129).
+ > LIST
+ 125 Data connection already open. Transfer starting.
+ 226 Transfer complete.
+ > TYPE I
+ 200 Type set to: Binary.
+ > NOOP
+ 200 I successfully done nothin'.
+ 200 I successfully done nothin'.
+ > DELE debug.log
+ 250 File removed.
+ > CWD /
+ 250 "/" is the current directory.
+ > PWD
+ 257 "/" is the current directory.
+ > TYPE A
+ 200 Type set to: ASCII.
+ > PASV
+ 227 Entering passive mode (137,112,89,197,153,15).
+ > LIST
+ 125 Data connection already open. Transfer starting.
+ 226 Transfer complete.
+ > TYPE I
+ 200 Type set to: Binary.
+ > CWD /
+ 250 "/" is the current directory.
+ > PWD
+ 257 "/" is the current directory.
+ > TYPE A
+ 200 Type set to: ASCII.
+ > PASV
+ 227 Entering passive mode (137,112,89,197,219,203).
+ > LIST
+ 125 Data connection already open. Transfer starting.
+ 226 Transfer complete.
+ > TYPE I
+ 200 Type set to: Binary.
+ Connecting to 477-4.csse.rose-hulman.edu
+ 220 pyftpdlib 1.5.6 ready.
+ Connection established...
+ > USER brunera1
+ 331 Username ok, send password.
+ > PASS ****
+ 230 Login successful.
+ Logged in...
+ > SYST
+ 215 UNIX Type: L8
+ > TYPE I
+ 200 Type set to: Binary.
+ > CWD /
+ 250 "/" is the current directory.
+ > PWD
+ 257 "/" is the current directory.
+ File: C:/Users/brunera1/debug.log
+ > MODE S
+ 200 Transfer mode set to: S
+ > TYPE A
+ 200 Type set to: ASCII.
+ > PASV
+ 227 Entering passive mode (137,112,89,197,234,159).
+ > LIST
+ 125 Data connection already open. Transfer starting.
+ 226 Transfer complete.
+ > TYPE I
+ 200 Type set to: Binary.
+ > PASV
+ 227 Entering passive mode (137,112,89,197,166,109).
+ > STOR debug.log
+ 150 File status okay. About to open data connection.
+ > NOOP
+ 200 I successfully done nothin'.
+ > CWD /
+ 250 "/" is the current directory.
+ > PWD
+ 257 "/" is the current directory.
+ > TYPE A
+ 200 Type set to: ASCII.
+ > PASV
+ 227 Entering passive mode (137,112,89,197,163,69).
+ > LIST
+ 125 Data connection already open. Transfer starting.
+ 226 Transfer complete.
+ > TYPE I
+ 200 Type set to: Binary.
+ > DELE debug.log
+ 250 File removed.
+ > CWD /
+ 250 "/" is the current directory.
+ > PWD
+ 257 "/" is the current directory.
+ > TYPE A
+ 200 Type set to: ASCII.
+ > PASV
+ 227 Entering passive mode (137,112,89,197,167,95).
+ > LIST
+ 125 Data connection already open. Transfer starting.
+ 226 Transfer complete.
+ > TYPE I
+ 200 Type set to: Binary.
+ java.lang.NullPointerException @FtpConnection::upload
+ > CWD /
+ > NOOP
+ Connecting to 477-4.csse.rose-hulman.edu
+ > NOOP
+ java.net.ConnectException: Connection refused: connect
+ FTP not available!
